@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Internet permission for opening YouTube links -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CineFAST">
+        
+        <!-- Splash Screen - Launcher Activity -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Onboarding Screen -->
+        <activity
+            android:name=".OnboardingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.CineFAST" />
+        
+        <!-- Main Activity (Home Screen) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        
+        <!-- Seat Selection Activity -->
+        <activity
+            android:name=".SeatSelectionActivity"
+            android:exported="false"
+            android:theme="@style/Theme.CineFAST" />
+
+        <!-- Snacks & Drinks Activity -->
+        <activity
+            android:name=".SnacksActivity"
+            android:exported="false"
+            android:theme="@style/Theme.CineFAST" />
+
+        <!-- Ticket Summary Activity -->
+        <activity
+            android:name=".TicketSummaryActivity"
+            android:exported="false"
+            android:theme="@style/Theme.CineFAST" />
+    </application>
+
+</manifest>

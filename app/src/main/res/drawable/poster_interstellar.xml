@@ -1,0 +1,32 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="180dp"
+    android:viewportWidth="120"
+    android:viewportHeight="180">
+    
+    <!-- Purple gradient background -->
+    <path
+        android:fillColor="#a855f7"
+        android:pathData="M0,0 L120,0 L120,180 L0,180 Z"/>
+    
+    <!-- Rocket icon -->
+    <path
+        android:fillColor="#e9d5ff"
+        android:pathData="M60,40 L55,60 L50,80 L50,100 L60,110 L70,100 L70,80 L65,60 Z"/>
+    
+    <!-- Rocket nose -->
+    <path
+        android:fillColor="#f3e8ff"
+        android:pathData="M60,40 L50,50 L70,50 Z"/>
+    
+    <!-- Stars -->
+    <path
+        android:fillColor="#fef3c7"
+        android:pathData="M30,50 m-2,0 a2,2 0,1,0 4,0 a2,2 0,1,0 -4,0"/>
+    <path
+        android:fillColor="#fef3c7"
+        android:pathData="M90,70 m-2,0 a2,2 0,1,0 4,0 a2,2 0,1,0 -4,0"/>
+    <path
+        android:fillColor="#fef3c7"
+        android:pathData="M85,40 m-2,0 a2,2 0,1,0 4,0 a2,2 0,1,0 -4,0"/>
+</vector>

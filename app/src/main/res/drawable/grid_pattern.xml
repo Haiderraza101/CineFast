@@ -1,0 +1,46 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="400dp"
+    android:height="800dp"
+    android:viewportWidth="400"
+    android:viewportHeight="800">
+    
+    <!-- Background Gradient -->
+    <path
+        android:pathData="M0,0 h400 v800 h-400 z">
+        <aapt:attr name="android:fillColor" xmlns:aapt="http://schemas.android.com/aapt">
+            <gradient
+                android:angle="315"
+                android:endColor="#000000"
+                android:startColor="#808080" />
+        </aapt:attr>
+    </path>
+
+    <!-- Skewed Rounded Rectangles to simulate the grid in the image -->
+    <group android:rotation="-15" android:translateX="-50" android:translateY="-100">
+        <!-- Row 1 -->
+        <path android:fillColor="#33FFFFFF" android:pathData="M10,10 h150 v250 q0,20 -20,20 h-110 q-20,0 -20,-20 z" />
+        <path android:fillColor="#33FFFFFF" android:pathData="M180,10 h150 v250 q0,20 -20,20 h-110 q-20,0 -20,-20 z" />
+        <path android:fillColor="#33FFFFFF" android:pathData="M350,10 h150 v250 q0,20 -20,20 h-110 q-20,0 -20,-20 z" />
+        
+        <!-- Row 2 -->
+        <path android:fillColor="#33FFFFFF" android:pathData="M10,300 h150 v250 q0,20 -20,20 h-110 q-20,0 -20,-20 z" />
+        <path android:fillColor="#33FFFFFF" android:pathData="M180,300 h150 v250 q0,20 -20,20 h-110 q-20,0 -20,-20 z" />
+        <path android:fillColor="#33FFFFFF" android:pathData="M350,300 h150 v250 q0,20 -20,20 h-110 q-20,0 -20,-20 z" />
+
+        <!-- Row 3 -->
+        <path android:fillColor="#33FFFFFF" android:pathData="M10,590 h150 v250 q0,20 -20,20 h-110 q-20,0 -20,-20 z" />
+        <path android:fillColor="#33FFFFFF" android:pathData="M180,590 h150 v250 q0,20 -20,20 h-110 q-20,0 -20,-20 z" />
+        <path android:fillColor="#33FFFFFF" android:pathData="M350,590 h150 v250 q0,20 -20,20 h-110 q-20,0 -20,-20 z" />
+    </group>
+    
+    <!-- Bottom Shadow Gradient -->
+    <path
+        android:pathData="M0,600 h400 v200 h-400 z">
+        <aapt:attr name="android:fillColor" xmlns:aapt="http://schemas.android.com/aapt">
+            <gradient
+                android:angle="90"
+                android:endColor="#000000"
+                android:startColor="#FF000000" />
+        </aapt:attr>
+    </path>
+</vector>
