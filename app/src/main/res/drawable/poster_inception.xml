@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="180dp"
+    android:viewportWidth="120"
+    android:viewportHeight="180">
+    
+    <!-- Blue gradient background -->
+    <path
+        android:fillColor="#2563eb"
+        android:pathData="M0,0 L120,0 L120,180 L0,180 Z"/>
+    
+    <!-- Spinning top icon -->
+    <path
+        android:fillColor="#60a5fa"
+        android:pathData="M60,50 L50,70 L50,90 L60,100 L70,90 L70,70 Z"/>
+    
+    <!-- Top point -->
+    <path
+        android:fillColor="#93c5fd"
+        android:pathData="M60,50 m-5,0 a5,5 0,1,0 10,0 a5,5 0,1,0 -10,0"/>
+</vector>

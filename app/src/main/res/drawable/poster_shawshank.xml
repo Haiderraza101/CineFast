@@ -1,0 +1,29 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="180dp"
+    android:viewportWidth="120"
+    android:viewportHeight="180">
+    
+    <!-- Cyan background -->
+    <path
+        android:fillColor="#06b6d4"
+        android:pathData="M0,0 L120,0 L120,180 L0,180 Z"/>
+    
+    <!-- Key icon -->
+    <path
+        android:fillColor="#fbbf24"
+        android:pathData="M60,60 m-8,0 a8,8 0,1,0 16,0 a8,8 0,1,0 -16,0"/>
+    
+    <!-- Key shaft -->
+    <path
+        android:fillColor="#fbbf24"
+        android:pathData="M60,68 L60,100 L65,100 L65,68 Z"/>
+    
+    <!-- Key teeth -->
+    <path
+        android:fillColor="#fbbf24"
+        android:pathData="M65,85 L70,85 L70,90 L65,90 Z"/>
+    <path
+        android:fillColor="#fbbf24"
+        android:pathData="M65,95 L70,95 L70,100 L65,100 Z"/>
+</vector>

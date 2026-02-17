@@ -1,0 +1,64 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    
+    <!-- Outer red circle with film reel dots -->
+    <path
+        android:fillColor="#FF0000"
+        android:pathData="M60,60m-58,0a58,58 0,1 1,116 0a58,58 0,1 1,-116 0"/>
+    
+    <!-- Inner black circle -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M60,60m-50,0a50,50 0,1 1,100 0a50,50 0,1 1,-100 0"/>
+    
+    <!-- Inner red circle -->
+    <path
+        android:fillColor="#FF0000"
+        android:pathData="M60,60m-46,0a46,46 0,1 1,92 0a46,46 0,1 1,-92 0"/>
+    
+    <!-- White play button triangle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M48,40 L48,80 L78,60 Z"/>
+    
+    <!-- Film reel dots around the outer circle -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M60,4 m-3,0 a3,3 0,1,1 6,0 a3,3 0,1,1 -6,0"/>
+    <path
+        android:fillColor="#000000"
+        android:pathData="M85,10 m-3,0 a3,3 0,1,1 6,0 a3,3 0,1,1 -6,0"/>
+    <path
+        android:fillColor="#000000"
+        android:pathData="M105,25 m-3,0 a3,3 0,1,1 6,0 a3,3 0,1,1 -6,0"/>
+    <path
+        android:fillColor="#000000"
+        android:pathData="M110,50 m-3,0 a3,3 0,1,1 6,0 a3,3 0,1,1 -6,0"/>
+    <path
+        android:fillColor="#000000"
+        android:pathData="M105,75 m-3,0 a3,3 0,1,1 6,0 a3,3 0,1,1 -6,0"/>
+    <path
+        android:fillColor="#000000"
+        android:pathData="M85,95 m-3,0 a3,3 0,1,1 6,0 a3,3 0,1,1 -6,0"/>
+    <path
+        android:fillColor="#000000"
+        android:pathData="M60,105 m-3,0 a3,3 0,1,1 6,0 a3,3 0,1,1 -6,0"/>
+    <path
+        android:fillColor="#000000"
+        android:pathData="M35,95 m-3,0 a3,3 0,1,1 6,0 a3,3 0,1,1 -6,0"/>
+    <path
+        android:fillColor="#000000"
+        android:pathData="M15,75 m-3,0 a3,3 0,1,1 6,0 a3,3 0,1,1 -6,0"/>
+    <path
+        android:fillColor="#000000"
+        android:pathData="M10,50 m-3,0 a3,3 0,1,1 6,0 a3,3 0,1,1 -6,0"/>
+    <path
+        android:fillColor="#000000"
+        android:pathData="M15,25 m-3,0 a3,3 0,1,1 6,0 a3,3 0,1,1 -6,0"/>
+    <path
+        android:fillColor="#000000"
+        android:pathData="M35,10 m-3,0 a3,3 0,1,1 6,0 a3,3 0,1,1 -6,0"/>
+</vector>
