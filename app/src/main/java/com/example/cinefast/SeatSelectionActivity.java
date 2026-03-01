@@ -156,7 +156,7 @@ public class SeatSelectionActivity extends AppCompatActivity {
         return;
       }
       selectedSeatIds.add(seatNum);
-      btn.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.legend_yours)));
+      btn.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.seat_selected)));
     }
 
     updatePriceAndButton();
