@@ -171,33 +171,52 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="12dp" />
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnBookDarkKnight"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1.1"
+                            android:minHeight="30dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
                             android:text="Book Seats"
                             android:textColor="@color/text_white"
-                            android:textSize="10sp"
+                            android:textSize="9sp"
                             android:textStyle="bold"
                             android:backgroundTint="@color/brand_red"
                             android:textAllCaps="false"
-                            app:cornerRadius="8dp" />
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            app:cornerRadius="6dp" />
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnTrailerDarkKnight"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
+                            android:layout_weight="0.9"
+                            android:layout_marginStart="6dp"
+                            android:minHeight="30dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
                             android:text="Trailer"
                             android:textColor="@color/text_black"
-                            android:textSize="10sp"
+                            android:textSize="9sp"
                             android:textStyle="bold"
                             android:backgroundTint="@color/trailer_btn_bg"
                             android:textAllCaps="false"
-                            app:cornerRadius="8dp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            app:cornerRadius="6dp"
                             app:icon="@android:drawable/ic_media_play"
+                            app:iconSize="13dp"
+                            app:iconPadding="4dp"
+                            app:iconGravity="textStart"
                             app:iconTint="@color/text_black" />
                     </LinearLayout>
                 </LinearLayout>
@@ -247,33 +266,52 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="12dp" />
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnBookInception"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1.1"
+                            android:minHeight="30dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
                             android:text="Book Seats"
                             android:textColor="@color/text_white"
-                            android:textSize="10sp"
+                            android:textSize="9sp"
                             android:textStyle="bold"
                             android:backgroundTint="@color/brand_red"
                             android:textAllCaps="false"
-                            app:cornerRadius="8dp" />
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            app:cornerRadius="6dp" />
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnTrailerInception"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
+                            android:layout_weight="0.9"
+                            android:layout_marginStart="6dp"
+                            android:minHeight="30dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
                             android:text="Trailer"
                             android:textColor="@color/text_black"
-                            android:textSize="10sp"
+                            android:textSize="9sp"
                             android:textStyle="bold"
                             android:backgroundTint="@color/trailer_btn_bg"
                             android:textAllCaps="false"
-                            app:cornerRadius="8dp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            app:cornerRadius="6dp"
                             app:icon="@android:drawable/ic_media_play"
+                            app:iconSize="13dp"
+                            app:iconPadding="4dp"
+                            app:iconGravity="textStart"
                             app:iconTint="@color/text_black" />
                     </LinearLayout>
                 </LinearLayout>
@@ -323,33 +361,52 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="12dp" />
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnBookInterstellar"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1.1"
+                            android:minHeight="30dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
                             android:text="Book Seats"
                             android:textColor="@color/text_white"
-                            android:textSize="10sp"
+                            android:textSize="9sp"
                             android:textStyle="bold"
                             android:backgroundTint="@color/brand_red"
                             android:textAllCaps="false"
-                            app:cornerRadius="8dp" />
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            app:cornerRadius="6dp" />
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnTrailerInterstellar"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
+                            android:layout_weight="0.9"
+                            android:layout_marginStart="6dp"
+                            android:minHeight="30dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
                             android:text="Trailer"
                             android:textColor="@color/text_black"
-                            android:textSize="10sp"
+                            android:textSize="9sp"
                             android:textStyle="bold"
                             android:backgroundTint="@color/trailer_btn_bg"
                             android:textAllCaps="false"
-                            app:cornerRadius="8dp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            app:cornerRadius="6dp"
                             app:icon="@android:drawable/ic_media_play"
+                            app:iconSize="13dp"
+                            app:iconPadding="4dp"
+                            app:iconGravity="textStart"
                             app:iconTint="@color/text_black" />
                     </LinearLayout>
                 </LinearLayout>
@@ -373,7 +430,7 @@
                 <com.google.android.material.imageview.ShapeableImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/poster_interstellar"
+                    android:src="@drawable/interstellar"
                     android:scaleType="centerCrop"
                     app:shapeAppearanceOverlay="@style/RoundedIcon" />
                 <LinearLayout
@@ -397,22 +454,24 @@
                         android:textSize="12sp"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="12dp" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnBookSpiderman"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1.1"
+                            android:minHeight="30dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
                             android:text="Book Seats"
                             android:textColor="@color/text_white"
                             android:textSize="9sp"
                             android:textStyle="bold"
-                            android:padding="0dp"
                             android:backgroundTint="@color/brand_red"
                             android:textAllCaps="false"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
                             app:cornerRadius="6dp" />
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnTrailerSpiderman"
@@ -420,19 +479,25 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="0.9"
                             android:layout_marginStart="6dp"
+                            android:minHeight="30dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
                             android:text="Trailer"
                             android:textColor="@color/text_black"
                             android:textSize="9sp"
                             android:textStyle="bold"
-                            android:padding="0dp"
                             android:backgroundTint="@color/trailer_btn_bg"
                             android:textAllCaps="false"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
                             app:cornerRadius="6dp"
                             app:icon="@android:drawable/ic_media_play"
-                            app:iconSize="14dp"
-                            app:iconPadding="2dp"
+                            app:iconSize="13dp"
+                            app:iconPadding="4dp"
+                            app:iconGravity="textStart"
                             app:iconTint="@color/text_black" />
-                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -454,7 +519,7 @@
                 <com.google.android.material.imageview.ShapeableImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/poster_interstellar"
+                    android:src="@drawable/interstellar"
                     android:scaleType="centerCrop"
                     app:shapeAppearanceOverlay="@style/RoundedIcon" />
                 <LinearLayout
@@ -478,22 +543,24 @@
                         android:textSize="12sp"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="12dp" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnBookAvengersEndgame"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1.1"
+                            android:minHeight="30dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
                             android:text="Book Seats"
                             android:textColor="@color/text_white"
                             android:textSize="9sp"
                             android:textStyle="bold"
-                            android:padding="0dp"
                             android:backgroundTint="@color/brand_red"
                             android:textAllCaps="false"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
                             app:cornerRadius="6dp" />
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnTrailerAvengers"
@@ -501,19 +568,25 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="0.9"
                             android:layout_marginStart="6dp"
+                            android:minHeight="30dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
                             android:text="Trailer"
                             android:textColor="@color/text_black"
                             android:textSize="9sp"
                             android:textStyle="bold"
-                            android:padding="0dp"
                             android:backgroundTint="@color/trailer_btn_bg"
                             android:textAllCaps="false"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
                             app:cornerRadius="6dp"
                             app:icon="@android:drawable/ic_media_play"
-                            app:iconSize="14dp"
-                            app:iconPadding="2dp"
+                            app:iconSize="13dp"
+                            app:iconPadding="4dp"
+                            app:iconGravity="textStart"
                             app:iconTint="@color/text_black" />
-                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -535,7 +608,7 @@
                 <com.google.android.material.imageview.ShapeableImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/poster_interstellar"
+                    android:src="@drawable/interstellar"
                     android:scaleType="centerCrop"
                     app:shapeAppearanceOverlay="@style/RoundedIcon" />
                 <LinearLayout
@@ -559,22 +632,24 @@
                         android:textSize="12sp"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="12dp" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnBookMadMax"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1.1"
+                            android:minHeight="30dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
                             android:text="Book Seats"
                             android:textColor="@color/text_white"
                             android:textSize="9sp"
                             android:textStyle="bold"
-                            android:padding="0dp"
                             android:backgroundTint="@color/brand_red"
                             android:textAllCaps="false"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
                             app:cornerRadius="6dp" />
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnTrailerMadMax"
@@ -582,19 +657,25 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="0.9"
                             android:layout_marginStart="6dp"
+                            android:minHeight="30dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
                             android:text="Trailer"
                             android:textColor="@color/text_black"
                             android:textSize="9sp"
                             android:textStyle="bold"
-                            android:padding="0dp"
                             android:backgroundTint="@color/trailer_btn_bg"
                             android:textAllCaps="false"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
                             app:cornerRadius="6dp"
                             app:icon="@android:drawable/ic_media_play"
-                            app:iconSize="14dp"
-                            app:iconPadding="2dp"
+                            app:iconSize="13dp"
+                            app:iconPadding="4dp"
+                            app:iconGravity="textStart"
                             app:iconTint="@color/text_black" />
-                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
