@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@color/bg_dark"
     android:fillViewport="true">
 
     <LinearLayout
@@ -23,8 +23,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
-                android:text="←"
-                android:textColor="#FFFFFF"
+                android:text="â†"
+                android:textColor="@color/text_white"
                 android:textSize="24sp"
                 android:padding="0dp"
                 android:layout_centerVertical="true" />
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="Booking Summary"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -49,13 +49,13 @@
                 android:layout_width="100dp"
                 android:layout_height="140dp"
                 app:cardCornerRadius="12dp"
-                app:cardBackgroundColor="#333333">
+                app:cardBackgroundColor="@color/card_mid">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="Poster"
-                    android:textColor="#666666"/>
+                    android:textColor="@color/text_label"/>
             </androidx.cardview.widget.CardView>
 
             <LinearLayout
@@ -70,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Movie Name"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/text_white"
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
@@ -84,10 +84,10 @@
                         android:id="@+id/tvage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="#FF9800"
+                        android:background="@color/snack_popcorn"
                         android:paddingHorizontal="6dp"
                         android:text="+13"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_white"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         android:layout_marginEnd="8dp" />
@@ -96,7 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="IMAX 2D"
-                        android:textColor="#888888"
+                        android:textColor="@color/text_placeholder"
                         android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -110,37 +110,37 @@
             android:layout_marginBottom="24dp">
 
             <LinearLayout android:layout_height="wrap_content" android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hall" android:textColor="#666666" android:textSize="10sp"/>
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/tvhallNumber" android:text="1" android:textColor="#FFFFFF" android:textStyle="bold"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hall" android:textColor="@color/text_label" android:textSize="10sp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/tvhallNumber" android:text="1" android:textColor="@color/text_white" android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout android:layout_height="wrap_content" android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1">
-                <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Date" android:textColor="#666666" android:textSize="10sp"/>
-                <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/tvdate" android:text="12/12" android:textColor="#FFFFFF" android:textStyle="bold"/>
+                <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Date" android:textColor="@color/text_label" android:textSize="10sp"/>
+                <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/tvdate" android:text="12/12" android:textColor="@color/text_white" android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout android:layout_height="wrap_content" android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1">
-                <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Time" android:textColor="#666666" android:textSize="10sp"/>
-                <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/tvtime" android:text="10:00" android:textColor="#FFFFFF" android:textStyle="bold"/>
+                <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Time" android:textColor="@color/text_label" android:textSize="10sp"/>
+                <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/tvtime" android:text="10:00" android:textColor="@color/text_white" android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout android:layout_height="wrap_content" android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1">
-                <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Cinema" android:textColor="#666666" android:textSize="10sp"/>
-                <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Stars" android:textColor="#FFFFFF" android:textStyle="bold"/>
+                <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Cinema" android:textColor="@color/text_label" android:textSize="10sp"/>
+                <TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Stars" android:textColor="@color/text_white" android:textStyle="bold"/>
             </LinearLayout>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#333333"
+            android:background="@color/card_mid"
             android:layout_marginBottom="20dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tickets"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_white"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginBottom="12dp" />
@@ -156,7 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Snacks"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_white"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginBottom="12dp" />
@@ -171,7 +171,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#333333"
+            android:background="@color/card_mid"
             android:layout_marginBottom="32dp" />
 
         <LinearLayout
@@ -185,7 +185,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TOTAL PAID"
-                android:textColor="#AAAAAA"
+                android:textColor="@color/text_dimmed"
                 android:textSize="16sp" />
 
             <TextView
@@ -193,7 +193,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$0.00"
-                android:textColor="#4CAF50"
+                android:textColor="@color/price_green"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -205,9 +205,10 @@
             android:layout_height="56dp"
             android:backgroundTint="@color/brand_red"
             android:text="Share Ticket"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_white"
             android:textStyle="bold"
             android:textSize="16sp" />
 
     </LinearLayout>
 </ScrollView>
+

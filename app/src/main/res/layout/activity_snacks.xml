@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@color/bg_dark"
     android:fillViewport="true">
 
     <LinearLayout
@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="FAST"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select Items"
-            android:textColor="#666666"
+            android:textColor="@color/text_label"
             android:textSize="12sp"
             android:layout_marginBottom="4dp" />
 
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Snacks &amp; Drinks"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/text_white"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_marginBottom="24dp" />
@@ -67,7 +67,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    app:cardBackgroundColor="#FF9800"
+                    app:cardBackgroundColor="@color/snack_popcorn"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="0dp">
                     <ImageView
@@ -86,20 +86,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Popcorn"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_white"
                         android:textSize="18sp"
                         android:textStyle="bold" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Large / Buttered"
-                        android:textColor="#A0A0A0"
+                        android:textColor="@color/text_subtitle"
                         android:textSize="12sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="$8.99"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_white"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginTop="4dp" />
@@ -113,9 +113,9 @@
                             android:id="@+id/btnMinusPopcorn"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:backgroundTint="#3e4a6d"
-                            android:text="—"
-                            android:textColor="#FFFFFF"
+                            android:backgroundTint="@color/btn_minus"
+                            android:text="â€”"
+                            android:textColor="@color/text_white"
                             app:cornerRadius="8dp"
                             android:minWidth="0dp"
                             android:minHeight="0dp"
@@ -125,7 +125,7 @@
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:text="0"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/text_white"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:gravity="center" />
@@ -135,7 +135,7 @@
                             android:layout_height="40dp"
                             android:backgroundTint="@color/brand_red"
                             android:text="+"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/text_white"
                             app:cornerRadius="8dp"
                             android:minWidth="0dp"
                             android:minHeight="0dp"
@@ -145,7 +145,6 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Nachos Item Card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -162,7 +161,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    app:cardBackgroundColor="#FFC107"
+                    app:cardBackgroundColor="@color/snack_nachos"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="0dp">
                     <ImageView
@@ -181,20 +180,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nachos"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_white"
                         android:textSize="18sp"
                         android:textStyle="bold" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="With Cheese Dip"
-                        android:textColor="#A0A0A0"
+                        android:textColor="@color/text_subtitle"
                         android:textSize="12sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="$7.99"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_white"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginTop="4dp" />
@@ -208,9 +207,9 @@
                             android:id="@+id/btnMinusNachos"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:backgroundTint="#3e4a6d"
-                            android:text="—"
-                            android:textColor="#FFFFFF"
+                            android:backgroundTint="@color/btn_minus"
+                            android:text="â€”"
+                            android:textColor="@color/text_white"
                             app:cornerRadius="8dp"
                             android:minWidth="0dp"
                             android:minHeight="0dp"
@@ -220,7 +219,7 @@
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:text="0"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/text_white"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:gravity="center" />
@@ -230,7 +229,7 @@
                             android:layout_height="40dp"
                             android:backgroundTint="@color/brand_red"
                             android:text="+"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/text_white"
                             app:cornerRadius="8dp"
                             android:minWidth="0dp"
                             android:minHeight="0dp"
@@ -240,7 +239,6 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Soft Drink Item Card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -257,7 +255,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    app:cardBackgroundColor="#F44336"
+                    app:cardBackgroundColor="@color/snack_soda"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="0dp">
                     <ImageView
@@ -276,20 +274,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Soft Drink"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_white"
                         android:textSize="18sp"
                         android:textStyle="bold" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Large / Any Flavor"
-                        android:textColor="#A0A0A0"
+                        android:textColor="@color/text_subtitle"
                         android:textSize="12sp" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="$5.99"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/text_white"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginTop="4dp" />
@@ -303,9 +301,9 @@
                             android:id="@+id/btnMinusSoda"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:backgroundTint="#3e4a6d"
-                            android:text="—"
-                            android:textColor="#FFFFFF"
+                            android:backgroundTint="@color/btn_minus"
+                            android:text="â€”"
+                            android:textColor="@color/text_white"
                             app:cornerRadius="8dp"
                             android:minWidth="0dp"
                             android:minHeight="0dp"
@@ -315,7 +313,7 @@
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:text="0"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/text_white"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:gravity="center" />
@@ -325,7 +323,7 @@
                             android:layout_height="40dp"
                             android:backgroundTint="@color/brand_red"
                             android:text="+"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/text_white"
                             app:cornerRadius="8dp"
                             android:minWidth="0dp"
                             android:minHeight="0dp"
@@ -354,14 +352,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Total Snacks"
-                    android:textColor="#666666"
+                    android:textColor="@color/text_label"
                     android:textSize="12sp" />
                 <TextView
                     android:id="@+id/tvSnacksTotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="$0.00"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/text_white"
                     android:textSize="22sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -371,7 +369,7 @@
                 android:layout_width="160dp"
                 android:layout_height="56dp"
                 android:text="Confirm"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_white"
                 android:backgroundTint="@color/brand_red"
                 android:textStyle="bold"
                 app:cornerRadius="28dp"
@@ -380,3 +378,5 @@
 
     </LinearLayout>
 </ScrollView>
+
+

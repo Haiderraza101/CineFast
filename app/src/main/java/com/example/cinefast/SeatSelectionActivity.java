@@ -1,4 +1,4 @@
-package com.example.cinefast;
+﻿package com.example.cinefast;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,26 +62,27 @@ public class SeatSelectionActivity extends AppCompatActivity {
           // Navigate to next screen
           Intent intent = new Intent(SeatSelectionActivity.this, TicketSummaryActivity.class);
           intent.putExtra("movieName_key", getIntent().getStringExtra("movieName_key"));
-          intent.putExtra("age_key",getIntent().getIntExtra("age_key",13));
-          intent.putExtra("hallNumber_key",getIntent().getStringExtra("hallNumber_key"));
-          intent.putExtra("date_key",getIntent().getStringExtra("date_key"));
-          intent.putExtra("time_key",getIntent().getStringExtra("time_key"));
-          intent.putExtra("selectedSeats_key",selectedSeatIds);
-          intent.putExtra("popcornQty_key",0);
-          intent.putExtra("nachosQty_key",0);
-          intent.putExtra("sodaQty_key",0);
-          startActivity(intent);        }
+          intent.putExtra("age_key", getIntent().getIntExtra("age_key", 13));
+          intent.putExtra("hallNumber_key", getIntent().getStringExtra("hallNumber_key"));
+          intent.putExtra("date_key", getIntent().getStringExtra("date_key"));
+          intent.putExtra("time_key", getIntent().getStringExtra("time_key"));
+          intent.putExtra("selectedSeats_key", selectedSeatIds);
+          intent.putExtra("popcornQty_key", 0);
+          intent.putExtra("nachosQty_key", 0);
+          intent.putExtra("sodaQty_key", 0);
+          startActivity(intent);
+        }
       });
     }
 
-    btnProceedToSnacks.setOnClickListener((v)->{
+    btnProceedToSnacks.setOnClickListener((v) -> {
       Intent intent = new Intent(SeatSelectionActivity.this, SnacksActivity.class);
       intent.putExtra("movieName_key", getIntent().getStringExtra("movieName_key"));
-      intent.putExtra("age_key",getIntent().getIntExtra("age_key",13));
-      intent.putExtra("hallNumber_key",getIntent().getStringExtra("hallNumber_key"));
-      intent.putExtra("date_key",getIntent().getStringExtra("date_key"));
-      intent.putExtra("time_key",getIntent().getStringExtra("time_key"));
-      intent.putExtra("selectedSeats_key",selectedSeatIds);
+      intent.putExtra("age_key", getIntent().getIntExtra("age_key", 13));
+      intent.putExtra("hallNumber_key", getIntent().getStringExtra("hallNumber_key"));
+      intent.putExtra("date_key", getIntent().getStringExtra("date_key"));
+      intent.putExtra("time_key", getIntent().getStringExtra("time_key"));
+      intent.putExtra("selectedSeats_key", selectedSeatIds);
       startActivity(intent);
     });
   }
@@ -115,11 +117,16 @@ public class SeatSelectionActivity extends AppCompatActivity {
       int hallNumber = intent.getIntExtra("hallNumber_key", 1);
 
       // Set Text (Safely)
-      if (tvMovieName != null) tvMovieName.setText(movieName != null ? movieName : "N/A");
-      if (tvAge != null) tvAge.setText(age > 0 ? "+" + age : "PG");
-      if (tvHallNumber != null) tvHallNumber.setText(String.format("%02d", hallNumber));
-      if (tvDate != null) tvDate.setText(date != null ? date : "--/--");
-      if (tvTime != null) tvTime.setText(time != null ? time : "--:--");
+      if (tvMovieName != null)
+        tvMovieName.setText(movieName != null ? movieName : "N/A");
+      if (tvAge != null)
+        tvAge.setText(age > 0 ? "+" + age : "PG");
+      if (tvHallNumber != null)
+        tvHallNumber.setText(String.format("%02d", hallNumber));
+      if (tvDate != null)
+        tvDate.setText(date != null ? date : "--/--");
+      if (tvTime != null)
+        tvTime.setText(time != null ? time : "--:--");
 
       // --- CORRECTED ARRAYLIST RETRIEVAL ---
       // This grabs the ArrayList passed from the previous activity
@@ -140,10 +147,12 @@ public class SeatSelectionActivity extends AppCompatActivity {
       int resID = getResources().getIdentifier(buttonID, "id", getPackageName());
 
       // Safety: Skip if ID doesn't exist
-      if (resID == 0) continue;
+      if (resID == 0)
+        continue;
 
       Button btn = findViewById(resID);
-      if (btn == null) continue; // Safety check
+      if (btn == null)
+        continue; // Safety check
 
       allSeatButtons.add(btn);
       final int currentSeatNum = i;
@@ -151,11 +160,11 @@ public class SeatSelectionActivity extends AppCompatActivity {
       // 1. Check if seat is in the Booked List
       if (bookedSeatsList.contains(currentSeatNum)) {
         // BOOKED = RED & DISABLED
-        btn.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        btn.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.brand_red)));
         btn.setEnabled(false);
       } else {
         // AVAILABLE = GREY & CLICKABLE
-        btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#888888")));
+        btn.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.seat_available)));
 
         btn.setOnClickListener(v -> toggleSeatSelection(btn, currentSeatNum));
       }
@@ -167,7 +176,9 @@ public class SeatSelectionActivity extends AppCompatActivity {
     if (selectedSeatIds.contains(seatNum)) {
       // DESELECT CASE
       selectedSeatIds.remove(Integer.valueOf(seatNum));
-      btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#888888"))); // Back to Grey
+      btn.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.seat_available))); // Back
+                                                                                                               // to
+                                                                                                               // Grey
     } else {
       // SELECT CASE
       if (selectedSeatIds.size() >= MAX_SEATS) {
@@ -175,7 +186,8 @@ public class SeatSelectionActivity extends AppCompatActivity {
         return;
       }
       selectedSeatIds.add(seatNum);
-      btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50"))); // Turn Green
+      btn.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.seat_selected))); // Turn
+                                                                                                              // Green
     }
 
     updatePriceAndButton();

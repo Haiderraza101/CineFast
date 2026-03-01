@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@color/bg_dark"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1F1F1F"
+        android:background="@color/card_dark_bg"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -22,8 +22,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@android:color/transparent"
-                android:text="←"
-                android:textColor="#FFFFFF"
+                android:text="â†"
+                android:textColor="@color/text_white"
                 android:textSize="24sp"
                 android:padding="0dp" />
 
@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="Movie Name"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -49,10 +49,10 @@
                 android:id="@+id/tvAge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#FF9800"
+                android:background="@color/snack_popcorn"
                 android:paddingHorizontal="6dp"
                 android:text="13+"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/text_white"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:layout_marginEnd="8dp" />
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="IMAX 2D"
-                android:textColor="#AAAAAA"
+                android:textColor="@color/text_dimmed"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -73,18 +73,18 @@
             android:weightSum="3">
 
             <LinearLayout android:layout_height="wrap_content" android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:gravity="center">
-                <TextView android:text="HALL" android:textColor="#888888" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-                <TextView android:id="@+id/tvHallNumber" android:text="01" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="14sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:text="HALL" android:textColor="@color/text_placeholder" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:id="@+id/tvHallNumber" android:text="01" android:textColor="@color/text_white" android:textStyle="bold" android:textSize="14sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout android:layout_height="wrap_content" android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:gravity="center">
-                <TextView android:text="DATE" android:textColor="#888888" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-                <TextView android:id="@+id/tvDate" android:text="12/12" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="14sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:text="DATE" android:textColor="@color/text_placeholder" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:id="@+id/tvDate" android:text="12/12" android:textColor="@color/text_white" android:textStyle="bold" android:textSize="14sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout android:layout_height="wrap_content" android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:gravity="center">
-                <TextView android:text="TIME" android:textColor="#888888" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-                <TextView android:id="@+id/tvTime" android:text="10:00" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="14sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:text="TIME" android:textColor="@color/text_placeholder" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:id="@+id/tvTime" android:text="10:00" android:textColor="@color/text_white" android:textStyle="bold" android:textSize="14sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -93,7 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SCREEN"
-        android:textColor="#666666"
+        android:textColor="@color/text_label"
         android:gravity="center"
         android:textSize="12sp"
         android:letterSpacing="0.3"
@@ -103,7 +103,7 @@
         android:layout_width="250dp"
         android:layout_height="4dp"
         android:layout_gravity="center"
-        android:background="#10b981"
+        android:background="@color/snack_soda"
         android:layout_marginBottom="20dp"/>
 
     <ScrollView
@@ -177,19 +177,19 @@
         android:paddingBottom="16dp">
 
         <View android:layout_width="12dp" android:layout_height="12dp" android:background="@color/brand_red" android:layout_marginEnd="8dp"/>
-        <TextView android:text="Booked" android:textColor="#FFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="16dp"/>
+        <TextView android:text="Booked" android:textColor="@color/text_white" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="16dp"/>
 
-        <View android:layout_width="12dp" android:layout_height="12dp" android:background="#888888" android:layout_marginEnd="8dp"/>
-        <TextView android:text="Available" android:textColor="#FFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="16dp"/>
+        <View android:layout_width="12dp" android:layout_height="12dp" android:background="@color/seat_available" android:layout_marginEnd="8dp"/>
+        <TextView android:text="Available" android:textColor="@color/text_white" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="16dp"/>
 
-        <View android:layout_width="12dp" android:layout_height="12dp" android:background="#4CAF50" android:layout_marginEnd="8dp"/>
-        <TextView android:text="Selected" android:textColor="#FFF" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <View android:layout_width="12dp" android:layout_height="12dp" android:background="@color/seat_selected" android:layout_marginEnd="8dp"/>
+        <TextView android:text="Selected" android:textColor="@color/text_white" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1F1F1F"
+        android:background="@color/card_dark_bg"
         android:padding="16dp"
         android:orientation="horizontal"
         android:gravity="center_vertical">
@@ -202,7 +202,7 @@
             android:layout_height="wrap_content"
             android:text="Book Seats"
             android:backgroundTint="@color/brand_red"
-            android:textColor="#FFFFFF" />
+            android:textColor="@color/text_white" />
         <Button
             android:layout_marginStart="5dp"
             android:id="@+id/btnProceedToSnacks"
@@ -212,6 +212,7 @@
             android:layout_height="wrap_content"
             android:text="Proceed to Snacks"
             android:backgroundTint="@color/brand_red"
-            android:textColor="#FFFFFF" />
+            android:textColor="@color/text_white" />
     </LinearLayout>
 </LinearLayout>
+
