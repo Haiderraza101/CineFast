@@ -55,7 +55,7 @@
             android:id="@+id/btnGetStarted"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:backgroundTint="#FF0000"
+            android:backgroundTint="@color/brand_red"
             android:text="Get Started"
             android:textColor="#FFFFFF"
             android:textSize="16sp"

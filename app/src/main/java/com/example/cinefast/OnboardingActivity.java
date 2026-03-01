@@ -16,17 +16,14 @@ public class OnboardingActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_onboarding);
 
-    // Initialize button
     btnGetStarted = findViewById(R.id.btnGetStarted);
 
-    // Set click listener for Get Started button
     btnGetStarted.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        // Navigate to MainActivity (Home Screen) using explicit intent
         Intent intent = new Intent(OnboardingActivity.this, MainActivity.class);
         startActivity(intent);
-        finish(); // Close onboarding so user can't go back
+        finish();
       }
     });
   }
