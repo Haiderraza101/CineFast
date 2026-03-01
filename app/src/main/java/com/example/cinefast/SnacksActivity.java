@@ -56,14 +56,14 @@ public class SnacksActivity extends AppCompatActivity {
     // Initialize Intent data
     Intent intent = getIntent();
     if (intent != null) {
-      movieName = intent.getStringExtra("MOVIE_NAME");
-      selectedSeats = intent.getStringArrayListExtra("SELECTED_SEATS");
-      ticketTotalPrice = intent.getIntExtra("TOTAL_PRICE", 0);
+//      movieName = intent.getStringExtra("MOVIE_NAME");
+//      selectedSeats = intent.getStringArrayListExtra("SELECTED_SEATS");
+//      ticketTotalPrice = intent.getIntExtra("TOTAL_PRICE", 0);
     }
 
     initializeViews();
     setupClickListeners();
-    updateTotal();
+//    updateTotal();
   }
 
   private void initializeViews() {
@@ -85,10 +85,6 @@ public class SnacksActivity extends AppCompatActivity {
     btnPlusSoda = findViewById(R.id.btnPlusSoda);
     btnMinusSoda = findViewById(R.id.btnMinusSoda);
 
-    // Candy
-    tvQtyCandy = findViewById(R.id.tvQtyCandy);
-    btnPlusCandy = findViewById(R.id.btnPlusCandy);
-    btnMinusCandy = findViewById(R.id.btnMinusCandy);
   }
 
   private void setupClickListeners() {
@@ -134,29 +130,19 @@ public class SnacksActivity extends AppCompatActivity {
       }
     });
 
-    // Candy
-    btnPlusCandy.setOnClickListener(v -> {
-      qtyCandy++;
-      tvQtyCandy.setText(String.valueOf(qtyCandy));
-      updateTotal();
-    });
-    btnMinusCandy.setOnClickListener(v -> {
-      if (qtyCandy > 0) {
-        qtyCandy--;
-        tvQtyCandy.setText(String.valueOf(qtyCandy));
-        updateTotal();
-      }
-    });
-
-    // Confirm
+//     Confirm
     btnConfirmSnacks.setOnClickListener(v -> {
-      Intent nextIntent = new Intent(SnacksActivity.this, TicketSummaryActivity.class);
-      nextIntent.putExtra("MOVIE_NAME", movieName);
-      nextIntent.putStringArrayListExtra("SELECTED_SEATS", selectedSeats);
-      nextIntent.putExtra("TICKET_PRICE", (double) ticketTotalPrice);
-      nextIntent.putExtra("SNACKS_TOTAL", snacksTotalPrice);
-      nextIntent.putExtra("TOTAL_PRICE", (double) ticketTotalPrice + snacksTotalPrice);
-      startActivity(nextIntent);
+      Intent intent = new Intent(SnacksActivity.this, TicketSummaryActivity.class);
+      intent.putExtra("movieName_key", getIntent().getStringExtra("movieName_key"));
+      intent.putExtra("age_key",getIntent().getIntExtra("age_key",13));
+      intent.putExtra("hallNumber_key",getIntent().getStringExtra("hallNumber_key"));
+      intent.putExtra("date_key",getIntent().getStringExtra("date_key"));
+      intent.putExtra("time_key",getIntent().getStringExtra("time_key"));
+      intent.putExtra("selectedSeats_key",getIntent().getIntegerArrayListExtra("selectedSeats_key"));
+      intent.putExtra("popcornQty_key",qtyPopcorn);
+      intent.putExtra("nachosQty_key",qtyNachos);
+      intent.putExtra("sodaQty_key",qtySoda);
+      startActivity(intent);
     });
   }
 

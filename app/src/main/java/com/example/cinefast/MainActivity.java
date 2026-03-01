@@ -1,188 +1,171 @@
 package com.example.cinefast;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Trailer buttons
-    Button btnTrailerDarkKnight, btnTrailerInception, btnTrailerInterstellar, btnTrailerShawshank;
+    // Buttons & Views
+    Button btnBookDarkKnight, btnBookInception, btnBookInterstellar, btnBookAvengersEndGame, btnBookSpiderman, btnBookMadMax;
+    LinearLayout spiderManCard, avengersEndGameCard, madMaxCard, darkKnightCard, inceptionCard, interstellarCard;
 
-    // Book Seats buttons
-    Button btnBookDarkKnight, btnBookInception, btnBookInterstellar, btnBookShawshank;
-
-    // Date selector buttons
-    Button btnToday, btnTomorrow;
+    // Date Selector Views
+    LinearLayout llToday, llTomorrow;
+    View vTodaySelector, vTomorrowSelector;
+    TextView tvToday, tvTomorrow; // Added these to change text color
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialize all buttons
         initializeViews();
-
-        // Set up trailer button listeners (Implicit Intent to YouTube)
-        setupTrailerButtons();
-
-        // Set up book seats button listeners
         setupBookSeatsButtons();
-
-        // Set up date selector buttons
-        setupDateButtons();
     }
 
     private void initializeViews() {
-        // Trailer buttons
-        btnTrailerDarkKnight = findViewById(R.id.btnTrailerDarkKnight);
-        btnTrailerInception = findViewById(R.id.btnTrailerInception);
-        btnTrailerInterstellar = findViewById(R.id.btnTrailerInterstellar);
-        btnTrailerShawshank = findViewById(R.id.btnTrailerShawshank);
-
-        // Book Seats buttons
+        // --- 1. FIND VIEWS ---
         btnBookDarkKnight = findViewById(R.id.btnBookDarkKnight);
         btnBookInception = findViewById(R.id.btnBookInception);
         btnBookInterstellar = findViewById(R.id.btnBookInterstellar);
-        btnBookShawshank = findViewById(R.id.btnBookShawshank);
+        btnBookSpiderman = findViewById(R.id.btnBookSpiderman);
+        btnBookAvengersEndGame = findViewById(R.id.btnBookAvengersEndgame);
+        btnBookMadMax = findViewById(R.id.btnBookMadMax);
 
-        // Date selector buttons
-        btnToday = findViewById(R.id.btnToday);
-        btnTomorrow = findViewById(R.id.btnTomorrow);
-    }
+        spiderManCard = findViewById(R.id.spidermanCard);
+        avengersEndGameCard = findViewById(R.id.avengersEndGameCard);
+        madMaxCard = findViewById(R.id.madMaxCard);
+        darkKnightCard = findViewById(R.id.darkKnightCard);
+        inceptionCard = findViewById(R.id.inceptionCard);
+        interstellarCard = findViewById(R.id.interstellarCard);
 
-    private void setupTrailerButtons() {
-        // The Dark Knight Trailer - Implicit Intent to YouTube
-        btnTrailerDarkKnight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openYouTubeTrailer("https://www.youtube.com/watch?v=EXeTwQWrcwY");
-            }
+        llToday = findViewById(R.id.llToday);
+        llTomorrow = findViewById(R.id.llTomorrow);
+
+        vTodaySelector = findViewById(R.id.vTodaySelector);
+        vTomorrowSelector = findViewById(R.id.vTomorrowSelector); // Fixed copy-paste error here
+
+        tvToday = findViewById(R.id.tvToday);
+        tvTomorrow = findViewById(R.id.tvTomorrow);
+
+        // --- 2. SET LISTENERS ---
+
+        // CLICK TODAY
+        llToday.setOnClickListener((v) -> {
+            updateDateSelector(true); // true = Today is selected
         });
 
-        // Inception Trailer - Implicit Intent to YouTube
-        btnTrailerInception.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openYouTubeTrailer("https://www.youtube.com/watch?v=YoHD9XEInc0");
-            }
-        });
-
-        // Interstellar Trailer - Implicit Intent to YouTube
-        btnTrailerInterstellar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openYouTubeTrailer("https://www.youtube.com/watch?v=zSWdZVtXT7E");
-            }
-        });
-
-        // The Shawshank Redemption Trailer - Implicit Intent to YouTube
-        btnTrailerShawshank.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openYouTubeTrailer("https://www.youtube.com/watch?v=6hB3S9bIaco");
-            }
+        // CLICK TOMORROW
+        llTomorrow.setOnClickListener((v) -> {
+            updateDateSelector(false); // false = Tomorrow is selected
         });
     }
 
-    private void setupBookSeatsButtons() {
-        // The Dark Knight - Book Seats
-        btnBookDarkKnight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSeatSelection("The Dark Knight", "Action / 152 min");
-            }
-        });
+    // Helper function to handle the toggling logic
+    private void updateDateSelector(boolean isTodaySelected) {
+        if (isTodaySelected) {
+            // --- UI: Make TODAY Red & Active ---
+            llToday.setBackgroundResource(R.drawable.button_red);
+            tvToday.setTextColor(Color.WHITE);
+            vTodaySelector.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
 
-        // Inception - Book Seats
-        btnBookInception.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSeatSelection("Inception", "Sci-Fi / 148 min");
-            }
-        });
+            // --- UI: Make TOMORROW Grey & Inactive ---
+            llTomorrow.setBackgroundResource(R.drawable.date_selector_bg);
+            tvTomorrow.setTextColor(Color.parseColor("#B0B0B0"));
+            vTomorrowSelector.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#666666")));
 
-        // Interstellar - Book Seats
-        btnBookInterstellar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSeatSelection("Interstellar", "Sci-Fi / 169 min");
-            }
-        });
+            // --- LOGIC: Show Today's Movies ---
+            darkKnightCard.setVisibility(View.VISIBLE);
+            inceptionCard.setVisibility(View.VISIBLE);
+            interstellarCard.setVisibility(View.VISIBLE);
 
-        // The Shawshank Redemption - Book Seats
-        btnBookShawshank.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSeatSelection("The Shawshank Redemption", "Drama / 142 min");
-            }
-        });
-    }
+            spiderManCard.setVisibility(View.GONE);
+            avengersEndGameCard.setVisibility(View.GONE);
+            madMaxCard.setVisibility(View.GONE);
 
-    private void setupDateButtons() {
-        btnToday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Showing movies for Today", Toast.LENGTH_SHORT).show();
-            }
-        });
+        } else {
+            // --- UI: Make TODAY Grey & Inactive ---
+            llToday.setBackgroundResource(R.drawable.date_selector_bg);
+            tvToday.setTextColor(Color.parseColor("#B0B0B0"));
+            vTodaySelector.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#666666")));
 
-        btnTomorrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Showing movies for Tomorrow", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+            // --- UI: Make TOMORROW Red & Active ---
+            llTomorrow.setBackgroundResource(R.drawable.button_red);
+            tvTomorrow.setTextColor(Color.WHITE);
+            vTomorrowSelector.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
 
-    /**
-     * Opens YouTube trailer using implicit intent
-     * 
-     * @param youtubeUrl The YouTube video URL
-     */
-    private void openYouTubeTrailer(String youtubeUrl) {
-        try {
-            // Create implicit intent with ACTION_VIEW
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(youtubeUrl));
+            // --- LOGIC: Show Tomorrow's Movies ---
+            darkKnightCard.setVisibility(View.GONE);
+            inceptionCard.setVisibility(View.GONE);
+            interstellarCard.setVisibility(View.GONE);
 
-            // Check if there's an app that can handle this intent
-            if (intent.resolveActivity(getPackageManager()) != null) {
-                startActivity(intent);
-            } else {
-                Toast.makeText(this, "No app found to open YouTube", Toast.LENGTH_SHORT).show();
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, "Error opening trailer: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            spiderManCard.setVisibility(View.VISIBLE);
+            avengersEndGameCard.setVisibility(View.VISIBLE);
+            madMaxCard.setVisibility(View.VISIBLE);
         }
     }
 
-    /**
-     * Opens Seat Selection Activity using explicit intent
-     * Passes the selected movie name and details to the next activity
-     * 
-     * @param movieName    The name of the selected movie
-     * @param movieDetails The genre and duration of the movie
-     */
-    private void openSeatSelection(String movieName, String movieDetails) {
-        // Create explicit intent to SeatSelectionActivity
-        Intent intent = new Intent(MainActivity.this, SeatSelectionActivity.class);
+    private void setupBookSeatsButtons() {
+        // ... (Your existing button logic remains exactly the same) ...
+        btnBookDarkKnight.setOnClickListener(v -> {
+            ArrayList<Integer> bookedSeats = new ArrayList<>();
+            bookedSeats.add(1); bookedSeats.add(5); bookedSeats.add(7); bookedSeats.add(9);
+            openSeatSelection("The Dark Knight", "Action / 152 min", 17, 2, "3/10/2026", "10:00", bookedSeats);
+        });
 
-        // Pass movie data to the next activity
-        intent.putExtra("MOVIE_NAME", movieName);
-        intent.putExtra("MOVIE_DETAILS", movieDetails);
+        btnBookInception.setOnClickListener(v -> {
+            ArrayList<Integer> bookedSeats = new ArrayList<>();
+            bookedSeats.add(10); bookedSeats.add(11); bookedSeats.add(20); bookedSeats.add(18);
+            openSeatSelection("Inception", "Sci-Fi / 148 min", 18, 1, "3/10/2026", "09:00", bookedSeats);
+        });
 
-        // Start the SeatSelectionActivity
-        startActivity(intent);
+        btnBookInterstellar.setOnClickListener(v -> {
+            ArrayList<Integer> bookedSeats = new ArrayList<>();
+            bookedSeats.add(19); bookedSeats.add(20); bookedSeats.add(18); bookedSeats.add(21);
+            openSeatSelection("Interstellar", "Sci-Fi / 169 min", 17, 1, "3/10/2026", "12:00", bookedSeats);
+        });
+
+        btnBookSpiderman.setOnClickListener(v -> {
+            ArrayList<Integer> bookedSeats = new ArrayList<>();
+            bookedSeats.add(19); bookedSeats.add(17); bookedSeats.add(6); bookedSeats.add(7);
+            openSeatSelection("Spiderman", "Action / 180 min", 15, 2, "3/11/2026", "10:00", bookedSeats);
+        });
+
+        btnBookAvengersEndGame.setOnClickListener(v -> {
+            ArrayList<Integer> bookedSeats = new ArrayList<>();
+            bookedSeats.add(20); bookedSeats.add(17); bookedSeats.add(9); bookedSeats.add(8);
+            openSeatSelection("Avengers: EndGame", "Action / 184 min", 15, 2, "3/11/2026", "01:00", bookedSeats);
+        });
+
+        btnBookMadMax.setOnClickListener(v -> {
+            ArrayList<Integer> bookedSeats = new ArrayList<>();
+            bookedSeats.add(20); bookedSeats.add(21); bookedSeats.add(25); bookedSeats.add(19);
+            openSeatSelection("MadMax", "Post Apocalyptic / 139 min", 18, 2, "3/11/2026", "02:00", bookedSeats);
+        });
     }
 
-    private void init(){
-
-        btnTrailerDarkKnight = findViewById(R.id.trailerDarl)
+    private void openSeatSelection(String movieName, String movieDetails, int age, int hallNumber, String date, String time, ArrayList<Integer> bookedSeats) {
+        Intent intent = new Intent(MainActivity.this, SeatSelectionActivity.class);
+        intent.putExtra("movieName_key", movieName);
+        intent.putExtra("movieDetails_key", movieDetails);
+        intent.putExtra("age_key", age);
+        intent.putExtra("hallNumber_key", hallNumber);
+        intent.putExtra("date_key", date);
+        intent.putExtra("time_key", time);
+        intent.putIntegerArrayListExtra("bookedSeats_key", bookedSeats); // Changed to putIntegerArrayListExtra for safety
+        startActivity(intent);
     }
 }

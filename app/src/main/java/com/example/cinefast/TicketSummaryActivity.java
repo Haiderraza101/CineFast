@@ -3,7 +3,6 @@ package com.example.cinefast;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,130 +15,196 @@ import java.util.Locale;
 
 public class TicketSummaryActivity extends AppCompatActivity {
 
-  TextView tvFinalMovieName, tvFinalTotalPrice;
-  LinearLayout llTicketsContainer, llSnacksContainer;
-  Button btnSendTicket, btnSummaryBack;
+  // Views
+  private TextView tvFinalMovieName, tvAge, tvHallNumber, tvDate, tvTime, tvFinalTotalPrice;
+  private LinearLayout llTicketsContainer, llSnacksContainer;
+  private Button btnSendTicket, btnSummaryBack;
 
-  String movieName;
-  ArrayList<String> selectedSeats;
-  double ticketPrice;
-  double snacksTotal;
-  double totalCombined;
+  // Data Variables
+  private String movieName, date, time, age, hallNumber;
+  private ArrayList<Integer> selectedSeats;
+  private int qtyPopcorn, qtyNachos, qtySoda;
+
+  // Pricing Constants (Matches your previous logic)
+  private final double TICKET_PRICE_PER_UNIT = 15.00;
+  private final double PRICE_POPCORN = 8.99;
+  private final double PRICE_NACHOS = 7.99;
+  private final double PRICE_SODA = 5.99;
+
+  private double totalAmount = 0.0;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_ticket_summary);
 
-    // Initialize Views
-    tvFinalMovieName = findViewById(R.id.tvFinalMovieName);
-    tvFinalTotalPrice = findViewById(R.id.tvFinalTotalPrice);
-    llTicketsContainer = findViewById(R.id.llTicketsContainer);
-    llSnacksContainer = findViewById(R.id.llSnacksContainer);
-    btnSendTicket = findViewById(R.id.btnSendTicket);
-    btnSummaryBack = findViewById(R.id.btnSummaryBack);
-
-    // Get Data
-    Intent intent = getIntent();
-    if (intent != null) {
-      movieName = intent.getStringExtra("MOVIE_NAME");
-      selectedSeats = intent.getStringArrayListExtra("SELECTED_SEATS");
-      // Handled both int and double since I used different types in previous steps
-      // during implementation
-      ticketPrice = intent.getDoubleExtra("TICKET_PRICE", 0.0);
-      if (ticketPrice == 0.0)
-        ticketPrice = intent.getIntExtra("TOTAL_PRICE", 0);
-
-      snacksTotal = intent.getDoubleExtra("SNACKS_TOTAL", 0.0);
-      totalCombined = ticketPrice + snacksTotal;
-
-      // Update UI
-      tvFinalMovieName.setText(movieName);
-      tvFinalTotalPrice.setText(String.format(Locale.getDefault(), "%.2f USD", totalCombined));
-
-      displayTickets();
-      displaySnacks();
-    }
-
+    initializeViews();
+    getIntentData();
+    calculateAndDisplayDetails();
     setupButtons();
   }
 
-  private void displayTickets() {
-    if (selectedSeats == null)
-      return;
+  private void initializeViews() {
+    tvFinalMovieName = findViewById(R.id.tvFinalMovieName);
+    tvAge = findViewById(R.id.tvage);
+    tvHallNumber = findViewById(R.id.tvhallNumber);
+    tvDate = findViewById(R.id.tvdate);
+    tvTime = findViewById(R.id.tvtime);
+    tvFinalTotalPrice = findViewById(R.id.tvFinalTotalPrice);
 
-    double pricePerSeat = ticketPrice / selectedSeats.size();
+    llTicketsContainer = findViewById(R.id.llTicketsContainer);
+    llSnacksContainer = findViewById(R.id.llSnacksContainer);
 
-    for (String seat : selectedSeats) {
-      LinearLayout row = createSummaryRow("Seat " + seat, String.format(Locale.getDefault(), "%.2f USD", pricePerSeat));
-      llTicketsContainer.addView(row);
+    btnSendTicket = findViewById(R.id.btnSendTicket);
+    btnSummaryBack = findViewById(R.id.btnSummaryBack);
+  }
+
+  private void getIntentData() {
+    Intent intent = getIntent();
+    if (intent != null) {
+      // Retrieve Strings
+      movieName = intent.getStringExtra("movieName_key");
+      date = intent.getStringExtra("date_key");
+      time = intent.getStringExtra("time_key");
+
+      // Retrieve Hall/Age as Strings or convert them if sent as Ints
+      // (Handling both cases to be safe)
+      hallNumber = String.valueOf(intent.getIntExtra("hallNumber_key", 1));
+      age = String.valueOf(intent.getIntExtra("age_key", 13));
+
+      // Retrieve Arrays and Quantities
+      selectedSeats = intent.getIntegerArrayListExtra("selectedSeats_key");
+      qtyPopcorn = intent.getIntExtra("popcornQty_key", 0);
+      qtyNachos = intent.getIntExtra("nachosQty_key", 0);
+      qtySoda = intent.getIntExtra("sodaQty_key", 0);
+
+      // Set Header Data
+      tvFinalMovieName.setText(movieName != null ? movieName : "Unknown Movie");
+      tvAge.setText("+" + age);
+      tvHallNumber.setText(hallNumber);
+      tvDate.setText(date);
+      tvTime.setText(time);
     }
   }
 
-  private void displaySnacks() {
-    if (snacksTotal > 0) {
-      LinearLayout row = createSummaryRow("Selected Snacks",
-          String.format(Locale.getDefault(), "%.2f USD", snacksTotal));
-      llSnacksContainer.addView(row);
+  private void calculateAndDisplayDetails() {
+    totalAmount = 0.0;
+
+    // --- 1. DISPLAY TICKETS ---
+    if (selectedSeats != null && !selectedSeats.isEmpty()) {
+      for (Integer seatNum : selectedSeats) {
+        // Add Cost
+        totalAmount += TICKET_PRICE_PER_UNIT;
+
+        // Create Row in XML
+        addSummaryRow(llTicketsContainer, "Seat #" + seatNum, TICKET_PRICE_PER_UNIT);
+      }
     } else {
-      TextView none = new TextView(this);
-      none.setText("No snacks selected");
-      none.setTextColor(0xFF666666);
-      llSnacksContainer.addView(none);
+      addTextRow(llTicketsContainer, "No seats selected");
     }
+
+    // --- 2. DISPLAY SNACKS ---
+    boolean hasSnacks = false;
+
+    if (qtyPopcorn > 0) {
+      double cost = qtyPopcorn * PRICE_POPCORN;
+      totalAmount += cost;
+      addSummaryRow(llSnacksContainer, "Popcorn x" + qtyPopcorn, cost);
+      hasSnacks = true;
+    }
+
+    if (qtyNachos > 0) {
+      double cost = qtyNachos * PRICE_NACHOS;
+      totalAmount += cost;
+      addSummaryRow(llSnacksContainer, "Nachos x" + qtyNachos, cost);
+      hasSnacks = true;
+    }
+
+    if (qtySoda > 0) {
+      double cost = qtySoda * PRICE_SODA;
+      totalAmount += cost;
+      addSummaryRow(llSnacksContainer, "Soda x" + qtySoda, cost);
+      hasSnacks = true;
+    }
+
+    if (!hasSnacks) {
+      addTextRow(llSnacksContainer, "No snacks selected");
+    }
+
+    // --- 3. FINAL TOTAL ---
+    tvFinalTotalPrice.setText(String.format(Locale.US, "$%.2f", totalAmount));
   }
 
-  private LinearLayout createSummaryRow(String leftText, String rightText) {
-    LinearLayout layout = new LinearLayout(this);
-    layout.setOrientation(LinearLayout.HORIZONTAL);
-    layout.setPadding(0, 8, 0, 8);
+  // Helper to create the "Item ....... $Price" row dynamically
+  private void addSummaryRow(LinearLayout container, String label, double price) {
+    LinearLayout row = new LinearLayout(this);
+    row.setOrientation(LinearLayout.HORIZONTAL);
+    row.setPadding(0, 8, 0, 8);
+    row.setWeightSum(1.0f);
 
-    TextView left = new TextView(this);
-    left.setText(leftText);
-    left.setTextColor(0xFFB0B0B0);
-    left.setTextSize(14f);
-    LinearLayout.LayoutParams p1 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-    left.setLayoutParams(p1);
+    TextView tvLabel = new TextView(this);
+    tvLabel.setText(label);
+    tvLabel.setTextColor(0xFFAAAAAA); // Light Grey
+    tvLabel.setTextSize(14f);
+    LinearLayout.LayoutParams paramsLabel = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.7f);
+    tvLabel.setLayoutParams(paramsLabel);
 
-    TextView right = new TextView(this);
-    right.setText(rightText);
-    right.setTextColor(0xFFFFFFFF);
-    right.setTextSize(14f);
-    right.setGravity(Gravity.END);
+    TextView tvPrice = new TextView(this);
+    tvPrice.setText(String.format(Locale.US, "$%.2f", price));
+    tvPrice.setTextColor(0xFFFFFFFF); // White
+    tvPrice.setTextSize(14f);
+    tvPrice.setGravity(Gravity.END);
+    LinearLayout.LayoutParams paramsPrice = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 0.3f);
+    tvPrice.setLayoutParams(paramsPrice);
 
-    layout.addView(left);
-    layout.addView(right);
-    return layout;
+    row.addView(tvLabel);
+    row.addView(tvPrice);
+    container.addView(row);
+  }
+
+  private void addTextRow(LinearLayout container, String text) {
+    TextView tv = new TextView(this);
+    tv.setText(text);
+    tv.setTextColor(0xFF666666);
+    tv.setPadding(0, 8, 0, 8);
+    container.addView(tv);
   }
 
   private void setupButtons() {
     btnSummaryBack.setOnClickListener(v -> finish());
 
-    btnSendTicket.setOnClickListener(v -> {
-      shareTicketInfo();
-    });
+    btnSendTicket.setOnClickListener(v -> shareTicketInfo());
   }
 
   private void shareTicketInfo() {
-    // Create the ticket text
-    StringBuilder ticketText = new StringBuilder();
-    ticketText.append("🎟️ CineFAST Ticket Confirmation\n\n");
-    ticketText.append("Movie: ").append(movieName).append("\n");
-    ticketText.append("Seats: ").append(selectedSeats != null ? selectedSeats.toString() : "N/A").append("\n");
-    ticketText.append("Date: 13.04.2025\n");
-    ticketText.append("Time: 22:15\n\n");
-    ticketText.append("Total Amount: ").append(String.format(Locale.getDefault(), "%.2f USD", totalCombined))
-        .append("\n\n");
-    ticketText.append("Enjoy your movie with CineFAST! 🍿");
+    // Build the message string
+    StringBuilder sb = new StringBuilder();
+    sb.append("🎟️ *CineFAST Ticket Confirmation*\n\n");
+    sb.append("🎬 Movie: ").append(movieName).append("\n");
+    sb.append("📅 Date: ").append(date).append("\n");
+    sb.append("⏰ Time: ").append(time).append("\n");
+    sb.append("🏛 Hall: ").append(hallNumber).append("\n");
+    sb.append("💺 Seats: ").append(selectedSeats != null ? selectedSeats.toString() : "None").append("\n\n");
 
-    // Implicit Intent (ACTION_SEND)
+    if (qtyPopcorn > 0 || qtyNachos > 0 || qtySoda > 0) {
+      sb.append("🍿 Snacks:\n");
+      if (qtyPopcorn > 0) sb.append("- Popcorn x").append(qtyPopcorn).append("\n");
+      if (qtyNachos > 0) sb.append("- Nachos x").append(qtyNachos).append("\n");
+      if (qtySoda > 0) sb.append("- Soda x").append(qtySoda).append("\n");
+      sb.append("\n");
+    }
+
+    sb.append("💰 *Total Paid: ").append(String.format(Locale.US, "$%.2f", totalAmount)).append("*\n\n");
+    sb.append("See you at the movies!");
+
+    // Create Intent
     Intent sendIntent = new Intent();
     sendIntent.setAction(Intent.ACTION_SEND);
-    sendIntent.putExtra(Intent.EXTRA_TEXT, ticketText.toString());
+    sendIntent.putExtra(Intent.EXTRA_TEXT, sb.toString());
     sendIntent.setType("text/plain");
 
-    // Show Chooser (WhatsApp, Gmail, etc.)
-    Intent shareIntent = Intent.createChooser(sendIntent, "Send Ticket via:");
+    // Verify that the intent will resolve to an activity
+    Intent shareIntent = Intent.createChooser(sendIntent, "Share Ticket via");
     startActivity(shareIntent);
   }
 }

@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SplashActivity extends AppCompatActivity {
 
   // Splash screen duration in milliseconds
+  Animation fade;
+
   private static final int SPLASH_DURATION = 5000; // 5 seconds
 
   ImageView ivLogo;

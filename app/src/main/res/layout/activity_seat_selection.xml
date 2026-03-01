@@ -1,44 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
     android:orientation="vertical">
 
-    <!-- Top Light Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#D6D6D6"
+        android:background="#1F1F1F"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="16dp">
 
         <RelativeLayout
+            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <Button
                 android:id="@+id/btnBack"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/date_selector_bg"
-                android:backgroundTint="#C0C0C0"
+                android:background="@android:color/transparent"
                 android:text="←"
                 android:textColor="#FFFFFF"
-                app:cornerRadius="20dp"
+                android:textSize="24sp"
                 android:padding="0dp" />
-        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tvMovieName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Oppenheimer"
-            android:textColor="#808080"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp" />
+            <TextView
+                android:id="@+id/tvMovieName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Movie Name"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -48,151 +46,172 @@
             android:layout_marginTop="8dp">
 
             <TextView
+                android:id="@+id/tvAge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#10b981"
+                android:background="#FF9800"
                 android:paddingHorizontal="6dp"
-                android:paddingVertical="2dp"
-                android:text="+13"
+                android:text="13+"
                 android:textColor="#FFFFFF"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textStyle="bold"
-                android:layout_marginEnd="6dp" />
+                android:layout_marginEnd="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#A0A0A0"
-                android:paddingHorizontal="6dp"
-                android:paddingVertical="2dp"
-                android:text="EN"
-                android:textColor="#FFFFFF"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                android:layout_marginEnd="6dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ScreenX"
-                android:textColor="#A0A0A0"
+                android:text="IMAX 2D"
+                android:textColor="#AAAAAA"
                 android:textSize="12sp" />
         </LinearLayout>
 
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="4"
-            android:layout_marginTop="24dp">
-
-            <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
-                <TextView android:text="Theater" android:textColor="#A0A0A0" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:drawableStart="@android:drawable/ic_menu_mylocation" android:drawablePadding="2dp" />
-                <TextView android:text="Stars (90°Mall)" android:textColor="#808080" android:textSize="11sp" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
-                <TextView android:text="Hall" android:textColor="#A0A0A0" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-                <TextView android:text="1st" android:textColor="#808080" android:textSize="11sp" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
-                <TextView android:text="Date" android:textColor="#A0A0A0" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-                <TextView android:text="13.04.2025" android:textColor="#808080" android:textSize="11sp" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <LinearLayout android:orientation="vertical" android:layout_columnWeight="1">
-                <TextView android:text="Time" android:textColor="#A0A0A0" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-                <TextView android:text="22:15" android:textColor="#808080" android:textSize="11sp" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" />
-            </LinearLayout>
-        </GridLayout>
-    </LinearLayout>
-
-    <!-- Black Seat Grid Section -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#000000"
-        android:paddingTop="20dp">
-
-        <!-- Curved Screen Line -->
-        <View
-            android:id="@+id/screenLine"
-            android:layout_width="200dp"
-            android:layout_height="2dp"
-            android:layout_centerHorizontal="true"
-            android:background="#10b981" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SCREEN"
-            android:textColor="#FFFFFF"
-            android:textSize="8sp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/screenLine"
-            android:layout_marginTop="2dp" />
-
-        <LinearLayout
-            android:id="@+id/seatGridContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_centerInParent="true" />
-
-        <!-- Legend -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="24dp">
-            
-            <View android:layout_width="8dp" android:layout_height="8dp" android:background="#666666" android:layout_marginEnd="4dp" />
-            <TextView android:text="Booked" android:textColor="#FFFFFF" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="16dp" />
-            
-            <View android:layout_width="8dp" android:layout_height="8dp" android:background="#FFD700" android:layout_marginEnd="4dp" />
-            <TextView android:text="Yours" android:textColor="#FFFFFF" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="16dp" />
+            android:layout_marginTop="16dp"
+            android:weightSum="3">
 
-            <View android:layout_width="8dp" android:layout_height="8dp" android:background="@drawable/seat_available" android:backgroundTint="#FFFFFF" android:layout_marginEnd="4dp" />
-            <TextView android:text="Available" android:textColor="#FFFFFF" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <LinearLayout android:layout_height="wrap_content" android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:gravity="center">
+                <TextView android:text="HALL" android:textColor="#888888" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:id="@+id/tvHallNumber" android:text="01" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="14sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_height="wrap_content" android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:gravity="center">
+                <TextView android:text="DATE" android:textColor="#888888" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:id="@+id/tvDate" android:text="12/12" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="14sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_height="wrap_content" android:orientation="vertical" android:layout_width="0dp" android:layout_weight="1" android:gravity="center">
+                <TextView android:text="TIME" android:textColor="#888888" android:textSize="10sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:id="@+id/tvTime" android:text="10:00" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="14sp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            </LinearLayout>
         </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
-    <!-- Bottom Buttons Bar -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SCREEN"
+        android:textColor="#666666"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:letterSpacing="0.3"
+        android:layout_marginTop="16dp"/>
+
+    <View
+        android:layout_width="250dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center"
+        android:background="#10b981"
+        android:layout_marginBottom="20dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <GridLayout
+                android:id="@+id/gridLayoutSeats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="6"
+                android:rowCount="6"
+                android:useDefaultMargins="true">
+
+                <Button android:id="@+id/btnSeat1" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat2" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat3" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat4" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat5" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat6" style="@style/SeatButtonStyle" />
+
+                <Button android:id="@+id/btnSeat7" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat8" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat9" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat10" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat11" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat12" style="@style/SeatButtonStyle"/>
+
+                <Button android:id="@+id/btnSeat13" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat14" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat15" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat16" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat17" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat18" style="@style/SeatButtonStyle"/>
+
+                <Button android:id="@+id/btnSeat19" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat20" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat21" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat22" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat23" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat24" style="@style/SeatButtonStyle"/>
+
+                <Button android:id="@+id/btnSeat25" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat26" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat27" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat28" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat29" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat30" style="@style/SeatButtonStyle"/>
+
+                <Button android:id="@+id/btnSeat31" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat32" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat33" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat34" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat35" style="@style/SeatButtonStyle"/>
+                <Button android:id="@+id/btnSeat36" style="@style/SeatButtonStyle"/>
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1A1A2E"
-        android:padding="20dp"
-        android:orientation="horizontal">
+        android:gravity="center"
+        android:paddingBottom="16dp">
 
-        <Button
-            android:id="@+id/btnBookSeats"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_weight="1"
-            android:text="Book Seats"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#FF0000"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            app:cornerRadius="28dp"
-            android:layout_marginEnd="10dp" />
+        <View android:layout_width="12dp" android:layout_height="12dp" android:background="@android:color/holo_red_light" android:layout_marginEnd="8dp"/>
+        <TextView android:text="Booked" android:textColor="#FFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="16dp"/>
 
-        <Button
-            android:id="@+id/btnProceedSnacks"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_weight="1"
-            android:text="Proceed to Snacks"
-            android:textColor="#000000"
-            android:backgroundTint="#FFFFFF"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            app:cornerRadius="28dp" />
+        <View android:layout_width="12dp" android:layout_height="12dp" android:background="#888888" android:layout_marginEnd="8dp"/>
+        <TextView android:text="Available" android:textColor="#FFF" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="16dp"/>
+
+        <View android:layout_width="12dp" android:layout_height="12dp" android:background="#4CAF50" android:layout_marginEnd="8dp"/>
+        <TextView android:text="Selected" android:textColor="#FFF" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1F1F1F"
+        android:padding="16dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/btnConfirm"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:layout_height="wrap_content"
+            android:text="Book Seats"
+            android:backgroundTint="#f20000"
+            android:textColor="#FFFFFF" />
+        <Button
+            android:layout_marginStart="5dp"
+            android:id="@+id/btnProceedToSnacks"
+            android:textSize="12sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Proceed to Snacks"
+            android:backgroundTint="#f20000"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
 </LinearLayout>
