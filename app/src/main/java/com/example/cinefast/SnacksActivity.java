@@ -42,7 +42,6 @@ public class SnacksActivity extends AppCompatActivity {
   int qtyCandy = 0;
   double priceCandy = 6.99;
 
-  // Data from previous activities
   String movieName;
   ArrayList<String> selectedSeats;
   int ticketTotalPrice;
@@ -53,34 +52,28 @@ public class SnacksActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_snacks);
 
-    // Initialize Intent data
     Intent intent = getIntent();
     if (intent != null) {
-//      movieName = intent.getStringExtra("MOVIE_NAME");
-//      selectedSeats = intent.getStringArrayListExtra("SELECTED_SEATS");
-//      ticketTotalPrice = intent.getIntExtra("TOTAL_PRICE", 0);
+      // movieName = intent.getStringExtra("MOVIE_NAME");
+      // selectedSeats = intent.getStringArrayListExtra("SELECTED_SEATS");
+      // ticketTotalPrice = intent.getIntExtra("TOTAL_PRICE", 0);
     }
 
     initializeViews();
     setupClickListeners();
-//    updateTotal();
+    // updateTotal();
   }
 
   private void initializeViews() {
     tvSnacksTotal = findViewById(R.id.tvSnacksTotal);
     btnConfirmSnacks = findViewById(R.id.btnConfirmSnacks);
 
-    // Popcorn
     tvQtyPopcorn = findViewById(R.id.tvQtyPopcorn);
     btnPlusPopcorn = findViewById(R.id.btnPlusPopcorn);
     btnMinusPopcorn = findViewById(R.id.btnMinusPopcorn);
-
-    // Nachos
     tvQtyNachos = findViewById(R.id.tvQtyNachos);
     btnPlusNachos = findViewById(R.id.btnPlusNachos);
     btnMinusNachos = findViewById(R.id.btnMinusNachos);
-
-    // Soda
     tvQtySoda = findViewById(R.id.tvQtySoda);
     btnPlusSoda = findViewById(R.id.btnPlusSoda);
     btnMinusSoda = findViewById(R.id.btnMinusSoda);
@@ -88,7 +81,6 @@ public class SnacksActivity extends AppCompatActivity {
   }
 
   private void setupClickListeners() {
-    // Popcorn
     btnPlusPopcorn.setOnClickListener(v -> {
       qtyPopcorn++;
       tvQtyPopcorn.setText(String.valueOf(qtyPopcorn));
@@ -102,7 +94,6 @@ public class SnacksActivity extends AppCompatActivity {
       }
     });
 
-    // Nachos
     btnPlusNachos.setOnClickListener(v -> {
       qtyNachos++;
       tvQtyNachos.setText(String.valueOf(qtyNachos));
@@ -130,18 +121,17 @@ public class SnacksActivity extends AppCompatActivity {
       }
     });
 
-//     Confirm
     btnConfirmSnacks.setOnClickListener(v -> {
       Intent intent = new Intent(SnacksActivity.this, TicketSummaryActivity.class);
       intent.putExtra("movieName_key", getIntent().getStringExtra("movieName_key"));
-      intent.putExtra("age_key",getIntent().getIntExtra("age_key",13));
-      intent.putExtra("hallNumber_key",getIntent().getStringExtra("hallNumber_key"));
-      intent.putExtra("date_key",getIntent().getStringExtra("date_key"));
-      intent.putExtra("time_key",getIntent().getStringExtra("time_key"));
-      intent.putExtra("selectedSeats_key",getIntent().getIntegerArrayListExtra("selectedSeats_key"));
-      intent.putExtra("popcornQty_key",qtyPopcorn);
-      intent.putExtra("nachosQty_key",qtyNachos);
-      intent.putExtra("sodaQty_key",qtySoda);
+      intent.putExtra("age_key", getIntent().getIntExtra("age_key", 13));
+      intent.putExtra("hallNumber_key", getIntent().getStringExtra("hallNumber_key"));
+      intent.putExtra("date_key", getIntent().getStringExtra("date_key"));
+      intent.putExtra("time_key", getIntent().getStringExtra("time_key"));
+      intent.putExtra("selectedSeats_key", getIntent().getIntegerArrayListExtra("selectedSeats_key"));
+      intent.putExtra("popcornQty_key", qtyPopcorn);
+      intent.putExtra("nachosQty_key", qtyNachos);
+      intent.putExtra("sodaQty_key", qtySoda);
       startActivity(intent);
     });
   }
