@@ -1,12 +1,11 @@
 package com.example.cinefast;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,167 +16,187 @@ import java.util.List;
 
 public class SeatSelectionActivity extends AppCompatActivity {
 
-  TextView tvMovieName, tvMovieDetails, tvSelectedSeats, tvTotalPrice;
-  Button btnBack, btnBookSeats, btnProceedSnacks;
-  LinearLayout seatGridContainer;
+  // UI Components
+  private TextView tvMovieName, tvAge, tvHallNumber, tvDate, tvTime;
+  Button btnProceedToSnacks;
+  private TextView tvTotalPrice;
+  private Button btnConfirm, btnBack;
 
-  String movieName;
-  String movieDetails;
+  // Data handling
+  private List<Button> allSeatButtons = new ArrayList<>();
+  private ArrayList<Integer> selectedSeatIds = new ArrayList<>();
 
-  // Seat configuration
-  private static final int ROWS = 8;
-  private static final int COLS = 6;
-  private static final int TICKET_PRICE = 12; // $12 per seat
+  // IMPORTANT: initialized as empty list to prevent crashes if intent is null
+  private ArrayList<Integer> bookedSeatsList = new ArrayList<>();
 
-  private List<String> selectedSeatsList = new ArrayList<>();
-  private int totalPrice = 0;
+  // Logic Constants
+  private final int MAX_SEATS = 3;
+  private final int TICKET_PRICE = 15;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_seat_selection);
 
+    // 1. Initialize Views (Connect Java to XML)
     initializeViews();
-    getMovieDataFromIntent();
-    generateSeatGrid();
-    setupButtonListeners();
-    updateUI();
+
+    // 2. Get Data (Handle the ArrayList here)
+    getIntentData();
+
+    // 3. Setup the Grid (Colors and Clicks)
+    setupSeatGrid();
+
+    // 4. Back Button Logic
+    if (btnBack != null) {
+      btnBack.setOnClickListener(v -> finish());
+    }
+
+    // 5. Confirm Button Logic
+    if (btnConfirm != null) {
+      btnConfirm.setOnClickListener(v -> {
+        if (selectedSeatIds.isEmpty()) {
+          Toast.makeText(this, "Please select at least one seat.", Toast.LENGTH_SHORT).show();
+        } else {
+          // Navigate to next screen
+          Intent intent = new Intent(SeatSelectionActivity.this, TicketSummaryActivity.class);
+          intent.putExtra("movieName_key", getIntent().getStringExtra("movieName_key"));
+          intent.putExtra("age_key",getIntent().getIntExtra("age_key",13));
+          intent.putExtra("hallNumber_key",getIntent().getStringExtra("hallNumber_key"));
+          intent.putExtra("date_key",getIntent().getStringExtra("date_key"));
+          intent.putExtra("time_key",getIntent().getStringExtra("time_key"));
+          intent.putExtra("selectedSeats_key",selectedSeatIds);
+          intent.putExtra("popcornQty_key",0);
+          intent.putExtra("nachosQty_key",0);
+          intent.putExtra("sodaQty_key",0);
+          startActivity(intent);        }
+      });
+    }
+
+    btnProceedToSnacks.setOnClickListener((v)->{
+      Intent intent = new Intent(SeatSelectionActivity.this, SnacksActivity.class);
+      intent.putExtra("movieName_key", getIntent().getStringExtra("movieName_key"));
+      intent.putExtra("age_key",getIntent().getIntExtra("age_key",13));
+      intent.putExtra("hallNumber_key",getIntent().getStringExtra("hallNumber_key"));
+      intent.putExtra("date_key",getIntent().getStringExtra("date_key"));
+      intent.putExtra("time_key",getIntent().getStringExtra("time_key"));
+      intent.putExtra("selectedSeats_key",selectedSeatIds);
+      startActivity(intent);
+    });
   }
 
   private void initializeViews() {
+    // Header Details
     tvMovieName = findViewById(R.id.tvMovieName);
-    tvMovieDetails = findViewById(R.id.tvMovieDetails);
-    tvSelectedSeats = findViewById(R.id.tvSelectedSeats);
-    tvTotalPrice = findViewById(R.id.tvTotalPrice);
+    tvAge = findViewById(R.id.tvAge);
+    tvHallNumber = findViewById(R.id.tvHallNumber);
+    tvDate = findViewById(R.id.tvDate);
+    tvTime = findViewById(R.id.tvTime);
+
+    // Bottom Bar
+    btnConfirm = findViewById(R.id.btnConfirm); // Ensure XML ID is btnConfirm
     btnBack = findViewById(R.id.btnBack);
-    btnBookSeats = findViewById(R.id.btnBookSeats);
-    btnProceedSnacks = findViewById(R.id.btnProceedSnacks);
-    seatGridContainer = findViewById(seatGridContainer != null ? R.id.seatGridContainer : 0);
-    // Fallback if ID is missing (should be there based on my previous write)
-    if (seatGridContainer == null) {
-      seatGridContainer = findViewById(R.id.seatGridContainer);
+    btnProceedToSnacks = findViewById(R.id.btnProceedToSnacks);
+
+    // Disable Confirm button initially
+    if (btnConfirm != null) {
+      btnConfirm.setEnabled(false);
+      btnConfirm.setAlpha(0.5f);
     }
   }
 
-  private void getMovieDataFromIntent() {
+  private void getIntentData() {
     Intent intent = getIntent();
-    if (intent != null && intent.hasExtra("MOVIE_NAME")) {
-      movieName = intent.getStringExtra("MOVIE_NAME");
-      movieDetails = intent.getStringExtra("MOVIE_DETAILS");
-      tvMovieName.setText(movieName);
-      if (movieDetails != null)
-        tvMovieDetails.setText(movieDetails);
-    }
-  }
+    if (intent != null) {
+      String movieName = intent.getStringExtra("movieName_key");
+      String date = intent.getStringExtra("date_key");
+      String time = intent.getStringExtra("time_key");
+      int age = intent.getIntExtra("age_key", 0);
+      int hallNumber = intent.getIntExtra("hallNumber_key", 1);
 
-  private void generateSeatGrid() {
-    // Clear previous views if any
-    seatGridContainer.removeAllViews();
+      // Set Text (Safely)
+      if (tvMovieName != null) tvMovieName.setText(movieName != null ? movieName : "N/A");
+      if (tvAge != null) tvAge.setText(age > 0 ? "+" + age : "PG");
+      if (tvHallNumber != null) tvHallNumber.setText(String.format("%02d", hallNumber));
+      if (tvDate != null) tvDate.setText(date != null ? date : "--/--");
+      if (tvTime != null) tvTime.setText(time != null ? time : "--:--");
 
-    for (int i = 0; i < ROWS; i++) {
-      LinearLayout rowLayout = new LinearLayout(this);
-      rowLayout.setOrientation(LinearLayout.HORIZONTAL);
-      rowLayout.setGravity(Gravity.CENTER);
-      rowLayout.setLayoutParams(new LinearLayout.LayoutParams(
-          LinearLayout.LayoutParams.MATCH_PARENT,
-          LinearLayout.LayoutParams.WRAP_CONTENT));
+      // --- CORRECTED ARRAYLIST RETRIEVAL ---
+      // This grabs the ArrayList passed from the previous activity
+      ArrayList<Integer> receivedList = intent.getIntegerArrayListExtra("bookedSeats_key");
 
-      char rowChar = (char) ('A' + i);
-
-      for (int j = 0; j < COLS; j++) {
-        final String seatId = rowChar + String.valueOf(j + 1);
-
-        View seatView = new View(this);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(40, 40); // Size in px roughly
-        // Convert dp to px for better scaling
-        int size = (int) (35 * getResources().getDisplayMetrics().density);
-        params.setMargins(8, 8, 8, 8);
-        seatView.setLayoutParams(new LinearLayout.LayoutParams(size, size));
-        ((LinearLayout.LayoutParams) seatView.getLayoutParams()).setMargins(10, 10, 10, 10);
-
-        // Randomly mark some seats as booked for demo
-        boolean isBooked = (i == 2 && j == 1) || (i == 5 && j == 4) || (i == 1 && j == 0);
-
-        if (isBooked) {
-          seatView.setBackgroundResource(R.drawable.seat_booked);
-          seatView.setEnabled(false);
-        } else {
-          seatView.setBackgroundResource(R.drawable.seat_available);
-          seatView.setOnClickListener(new View.OnClickListener() {
-            boolean isSelected = false;
-
-            @Override
-            public void onClick(View v) {
-              if (isSelected) {
-                v.setBackgroundResource(R.drawable.seat_available);
-                selectedSeatsList.remove(seatId);
-              } else {
-                v.setBackgroundResource(R.drawable.seat_selected);
-                selectedSeatsList.add(seatId);
-              }
-              isSelected = !isSelected;
-              updateUI();
-            }
-          });
-        }
-        rowLayout.addView(seatView);
-
-        // Add a gap in the middle to simulate aisle like the image
-        if (j == 2) {
-          View aisle = new View(this);
-          aisle.setLayoutParams(new LinearLayout.LayoutParams(40, size));
-          rowLayout.addView(aisle);
-        }
+      if (receivedList != null) {
+        bookedSeatsList.addAll(receivedList);
       }
-      seatGridContainer.addView(rowLayout);
     }
   }
 
-  private void updateUI() {
-    if (selectedSeatsList.isEmpty()) {
-      tvSelectedSeats.setText("None");
-      tvTotalPrice.setText("$0");
-      btnProceedSnacks.setEnabled(false);
-      btnProceedSnacks.setAlpha(0.5f);
+  private void setupSeatGrid() {
+    // Iterate 1 to 36
+    for (int i = 1; i <= 36; i++) {
+      String buttonID = "btnSeat" + i;
+
+      // Find ID by string name
+      int resID = getResources().getIdentifier(buttonID, "id", getPackageName());
+
+      // Safety: Skip if ID doesn't exist
+      if (resID == 0) continue;
+
+      Button btn = findViewById(resID);
+      if (btn == null) continue; // Safety check
+
+      allSeatButtons.add(btn);
+      final int currentSeatNum = i;
+
+      // 1. Check if seat is in the Booked List
+      if (bookedSeatsList.contains(currentSeatNum)) {
+        // BOOKED = RED & DISABLED
+        btn.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        btn.setEnabled(false);
+      } else {
+        // AVAILABLE = GREY & CLICKABLE
+        btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#888888")));
+
+        btn.setOnClickListener(v -> toggleSeatSelection(btn, currentSeatNum));
+      }
+    }
+  }
+
+  private void toggleSeatSelection(Button btn, int seatNum) {
+    // Use Integer.valueOf to remove the OBJECT (the seat number) not the INDEX
+    if (selectedSeatIds.contains(seatNum)) {
+      // DESELECT CASE
+      selectedSeatIds.remove(Integer.valueOf(seatNum));
+      btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#888888"))); // Back to Grey
     } else {
-      StringBuilder seats = new StringBuilder();
-      for (int i = 0; i < selectedSeatsList.size(); i++) {
-        seats.append(selectedSeatsList.get(i));
-        if (i < selectedSeatsList.size() - 1)
-          seats.append(", ");
-      }
-      tvSelectedSeats.setText(seats.toString());
-      totalPrice = selectedSeatsList.size() * TICKET_PRICE;
-      tvTotalPrice.setText("$" + totalPrice);
-
-      btnProceedSnacks.setEnabled(true);
-      btnProceedSnacks.setAlpha(1.0f);
-    }
-  }
-
-  private void setupButtonListeners() {
-    btnBack.setOnClickListener(v -> finish());
-
-    btnBookSeats.setOnClickListener(v -> {
-      if (selectedSeatsList.isEmpty()) {
-        Toast.makeText(this, "Please select at least one seat", Toast.LENGTH_SHORT).show();
+      // SELECT CASE
+      if (selectedSeatIds.size() >= MAX_SEATS) {
+        Toast.makeText(this, "Max " + MAX_SEATS + " seats allowed!", Toast.LENGTH_SHORT).show();
         return;
       }
-      // Navigate directly to Ticket Summary (confirm booking)
-      Intent intent = new Intent(SeatSelectionActivity.this, TicketSummaryActivity.class);
-      intent.putExtra("MOVIE_NAME", movieName);
-      intent.putStringArrayListExtra("SELECTED_SEATS", new ArrayList<>(selectedSeatsList));
-      intent.putExtra("TOTAL_PRICE", totalPrice);
-      startActivity(intent);
-    });
+      selectedSeatIds.add(seatNum);
+      btn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50"))); // Turn Green
+    }
 
-    btnProceedSnacks.setOnClickListener(v -> {
-      // Navigate to Snacks Screen
-      Intent intent = new Intent(SeatSelectionActivity.this, SnacksActivity.class);
-      intent.putExtra("MOVIE_NAME", movieName);
-      intent.putStringArrayListExtra("SELECTED_SEATS", new ArrayList<>(selectedSeatsList));
-      intent.putExtra("TOTAL_PRICE", totalPrice);
-      startActivity(intent);
-    });
+    updatePriceAndButton();
+  }
+
+  private void updatePriceAndButton() {
+    int total = selectedSeatIds.size() * TICKET_PRICE;
+
+    // CRASH FIX: Check if Views are null before using them
+    if (tvTotalPrice != null) {
+      tvTotalPrice.setText("$" + total);
+    }
+
+    if (btnConfirm != null) {
+      if (selectedSeatIds.isEmpty()) {
+        btnConfirm.setEnabled(false);
+        btnConfirm.setAlpha(0.5f);
+      } else {
+        btnConfirm.setEnabled(true);
+        btnConfirm.setAlpha(1.0f);
+      }
+    }
   }
 }
