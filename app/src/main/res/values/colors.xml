@@ -19,13 +19,11 @@
     <color name="price_green">#4CAF50</color>
     <color name="trailer_btn_bg">#FFFFFF</color>
     <color name="inactive_selector">#666666</color>
-
-    <!-- Snack Card Colors -->
     <color name="snack_popcorn">#FF9800</color>
     <color name="snack_nachos">#FFC107</color>
     <color name="snack_soda">#F44336</color>
-
-    <!-- Misc UI Colors -->
     <color name="card_mid">#333333</color>
     <color name="btn_minus">#3e4a6d</color>
+    <color name="screen_arc">#4CAF50</color>
+    <color name="legend_yours">#FFD700</color>
 </resources>

@@ -1,4 +1,4 @@
-﻿package com.example.cinefast;
+package com.example.cinefast;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;

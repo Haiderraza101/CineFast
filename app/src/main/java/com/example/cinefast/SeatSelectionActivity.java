@@ -1,4 +1,4 @@
-﻿package com.example.cinefast;
+package com.example.cinefast;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -17,20 +17,16 @@ import java.util.List;
 
 public class SeatSelectionActivity extends AppCompatActivity {
 
-  // UI Components
   private TextView tvMovieName, tvAge, tvHallNumber, tvDate, tvTime;
   Button btnProceedToSnacks;
   private TextView tvTotalPrice;
   private Button btnConfirm, btnBack;
 
-  // Data handling
   private List<Button> allSeatButtons = new ArrayList<>();
   private ArrayList<Integer> selectedSeatIds = new ArrayList<>();
 
-  // IMPORTANT: initialized as empty list to prevent crashes if intent is null
   private ArrayList<Integer> bookedSeatsList = new ArrayList<>();
 
-  // Logic Constants
   private final int MAX_SEATS = 3;
   private final int TICKET_PRICE = 15;
 
@@ -39,27 +35,19 @@ public class SeatSelectionActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_seat_selection);
 
-    // 1. Initialize Views (Connect Java to XML)
     initializeViews();
-
-    // 2. Get Data (Handle the ArrayList here)
     getIntentData();
-
-    // 3. Setup the Grid (Colors and Clicks)
     setupSeatGrid();
 
-    // 4. Back Button Logic
     if (btnBack != null) {
       btnBack.setOnClickListener(v -> finish());
     }
 
-    // 5. Confirm Button Logic
     if (btnConfirm != null) {
       btnConfirm.setOnClickListener(v -> {
         if (selectedSeatIds.isEmpty()) {
           Toast.makeText(this, "Please select at least one seat.", Toast.LENGTH_SHORT).show();
         } else {
-          // Navigate to next screen
           Intent intent = new Intent(SeatSelectionActivity.this, TicketSummaryActivity.class);
           intent.putExtra("movieName_key", getIntent().getStringExtra("movieName_key"));
           intent.putExtra("age_key", getIntent().getIntExtra("age_key", 13));
@@ -88,19 +76,15 @@ public class SeatSelectionActivity extends AppCompatActivity {
   }
 
   private void initializeViews() {
-    // Header Details
     tvMovieName = findViewById(R.id.tvMovieName);
     tvAge = findViewById(R.id.tvAge);
     tvHallNumber = findViewById(R.id.tvHallNumber);
     tvDate = findViewById(R.id.tvDate);
     tvTime = findViewById(R.id.tvTime);
 
-    // Bottom Bar
-    btnConfirm = findViewById(R.id.btnConfirm); // Ensure XML ID is btnConfirm
+    btnConfirm = findViewById(R.id.btnConfirm);
     btnBack = findViewById(R.id.btnBack);
     btnProceedToSnacks = findViewById(R.id.btnProceedToSnacks);
-
-    // Disable Confirm button initially
     if (btnConfirm != null) {
       btnConfirm.setEnabled(false);
       btnConfirm.setAlpha(0.5f);
@@ -116,7 +100,6 @@ public class SeatSelectionActivity extends AppCompatActivity {
       int age = intent.getIntExtra("age_key", 0);
       int hallNumber = intent.getIntExtra("hallNumber_key", 1);
 
-      // Set Text (Safely)
       if (tvMovieName != null)
         tvMovieName.setText(movieName != null ? movieName : "N/A");
       if (tvAge != null)
@@ -128,8 +111,6 @@ public class SeatSelectionActivity extends AppCompatActivity {
       if (tvTime != null)
         tvTime.setText(time != null ? time : "--:--");
 
-      // --- CORRECTED ARRAYLIST RETRIEVAL ---
-      // This grabs the ArrayList passed from the previous activity
       ArrayList<Integer> receivedList = intent.getIntegerArrayListExtra("bookedSeats_key");
 
       if (receivedList != null) {
@@ -139,27 +120,21 @@ public class SeatSelectionActivity extends AppCompatActivity {
   }
 
   private void setupSeatGrid() {
-    // Iterate 1 to 36
     for (int i = 1; i <= 36; i++) {
       String buttonID = "btnSeat" + i;
 
-      // Find ID by string name
       int resID = getResources().getIdentifier(buttonID, "id", getPackageName());
 
-      // Safety: Skip if ID doesn't exist
       if (resID == 0)
         continue;
 
       Button btn = findViewById(resID);
       if (btn == null)
-        continue; // Safety check
+        continue;
 
       allSeatButtons.add(btn);
       final int currentSeatNum = i;
-
-      // 1. Check if seat is in the Booked List
       if (bookedSeatsList.contains(currentSeatNum)) {
-        // BOOKED = RED & DISABLED
         btn.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.brand_red)));
         btn.setEnabled(false);
       } else {
@@ -172,22 +147,16 @@ public class SeatSelectionActivity extends AppCompatActivity {
   }
 
   private void toggleSeatSelection(Button btn, int seatNum) {
-    // Use Integer.valueOf to remove the OBJECT (the seat number) not the INDEX
     if (selectedSeatIds.contains(seatNum)) {
-      // DESELECT CASE
       selectedSeatIds.remove(Integer.valueOf(seatNum));
-      btn.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.seat_available))); // Back
-                                                                                                               // to
-                                                                                                               // Grey
+      btn.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.seat_available)));
     } else {
-      // SELECT CASE
       if (selectedSeatIds.size() >= MAX_SEATS) {
         Toast.makeText(this, "Max " + MAX_SEATS + " seats allowed!", Toast.LENGTH_SHORT).show();
         return;
       }
       selectedSeatIds.add(seatNum);
-      btn.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.seat_selected))); // Turn
-                                                                                                              // Green
+      btn.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.legend_yours)));
     }
 
     updatePriceAndButton();
@@ -196,7 +165,6 @@ public class SeatSelectionActivity extends AppCompatActivity {
   private void updatePriceAndButton() {
     int total = selectedSeatIds.size() * TICKET_PRICE;
 
-    // CRASH FIX: Check if Views are null before using them
     if (tvTotalPrice != null) {
       tvTotalPrice.setText("$" + total);
     }
