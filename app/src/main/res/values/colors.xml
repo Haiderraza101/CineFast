@@ -3,5 +3,29 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="brand_red">#FF0000</color>
+    <color name="bg_dark">#000000</color>
     <color name="card_grey">#1e293b</color>
+    <color name="card_dark_bg">#0f172a</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_muted">#B0B0B0</color>
+    <color name="text_subtitle">#A0A0A0</color>
+    <color name="text_label">#666666</color>
+    <color name="text_placeholder">#888888</color>
+    <color name="text_dimmed">#AAAAAA</color>
+    <color name="text_black">#000000</color>
+    <color name="seat_available">#888888</color>
+    <color name="seat_selected">#4CAF50</color>
+    <color name="seat_booked">#FF0000</color>
+    <color name="price_green">#4CAF50</color>
+    <color name="trailer_btn_bg">#FFFFFF</color>
+    <color name="inactive_selector">#666666</color>
+
+    <!-- Snack Card Colors -->
+    <color name="snack_popcorn">#FF9800</color>
+    <color name="snack_nachos">#FFC107</color>
+    <color name="snack_soda">#F44336</color>
+
+    <!-- Misc UI Colors -->
+    <color name="card_mid">#333333</color>
+    <color name="btn_minus">#3e4a6d</color>
 </resources>

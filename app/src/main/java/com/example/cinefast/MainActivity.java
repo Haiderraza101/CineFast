@@ -1,4 +1,4 @@
-package com.example.cinefast;
+﻿package com.example.cinefast;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -18,9 +18,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Buttons & Views
-    Button btnBookDarkKnight, btnBookInception, btnBookInterstellar, btnBookAvengersEndGame, btnBookSpiderman,
+    Button btnBookDarkKnight, btnBookInception, btnBookInterstellar, btnBookAvengersEndgame, btnBookSpiderman,
             btnBookMadMax;
+    Button btnTrailerDarkKnight, btnTrailerInception, btnTrailerInterstellar, btnTrailerSpiderman, btnTrailerAvengers,
+            btnTrailerMadMax;
     View spiderManCard, avengersEndGameCard, madMaxCard, darkKnightCard, inceptionCard, interstellarCard;
 
     // Date Selector Views
@@ -43,8 +44,16 @@ public class MainActivity extends AppCompatActivity {
         btnBookInception = findViewById(R.id.btnBookInception);
         btnBookInterstellar = findViewById(R.id.btnBookInterstellar);
         btnBookSpiderman = findViewById(R.id.btnBookSpiderman);
-        btnBookAvengersEndGame = findViewById(R.id.btnBookAvengersEndgame);
+        btnBookAvengersEndgame = findViewById(R.id.btnBookAvengersEndgame);
         btnBookMadMax = findViewById(R.id.btnBookMadMax);
+
+        // Trailer Buttons
+        btnTrailerDarkKnight = findViewById(R.id.btnTrailerDarkKnight);
+        btnTrailerInception = findViewById(R.id.btnTrailerInception);
+        btnTrailerInterstellar = findViewById(R.id.btnTrailerInterstellar);
+        btnTrailerSpiderman = findViewById(R.id.btnTrailerSpiderman);
+        btnTrailerAvengers = findViewById(R.id.btnTrailerAvengers);
+        btnTrailerMadMax = findViewById(R.id.btnTrailerMadMax);
 
         spiderManCard = findViewById(R.id.spidermanCard);
         avengersEndGameCard = findViewById(R.id.avengersEndGameCard);
@@ -78,18 +87,18 @@ public class MainActivity extends AppCompatActivity {
     // Helper function to handles the toggling logic without XML drawables
     private void updateDateSelector(boolean isTodaySelected) {
         int colorRed = ContextCompat.getColor(this, R.color.brand_red);
-        int colorGrey = Color.parseColor("#0f172a"); // Keeping this dark shade for inactive state
+        int colorGrey = ContextCompat.getColor(this, R.color.card_dark_bg); // Keeping this dark shade for inactive state
 
         if (isTodaySelected) {
             // --- UI: Make TODAY Red & Active ---
             setRoundedBackground(llToday, colorRed, 24);
-            tvToday.setTextColor(Color.WHITE);
-            vTodaySelector.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+            tvToday.setTextColor(ContextCompat.getColor(this, R.color.text_white));
+            vTodaySelector.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.text_white)));
 
             // --- UI: Make TOMORROW Grey & Inactive ---
             setRoundedBackground(llTomorrow, colorGrey, 24);
-            tvTomorrow.setTextColor(Color.parseColor("#B0B0B0"));
-            vTomorrowSelector.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#666666")));
+            tvTomorrow.setTextColor(ContextCompat.getColor(this, R.color.text_muted));
+            vTomorrowSelector.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.inactive_selector)));
 
             // --- LOGIC: Show Today's Movies ---
             darkKnightCard.setVisibility(View.VISIBLE);
@@ -103,13 +112,13 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // --- UI: Make TODAY Grey & Inactive ---
             setRoundedBackground(llToday, colorGrey, 24);
-            tvToday.setTextColor(Color.parseColor("#B0B0B0"));
-            vTodaySelector.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#666666")));
+            tvToday.setTextColor(ContextCompat.getColor(this, R.color.text_muted));
+            vTodaySelector.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.inactive_selector)));
 
             // --- UI: Make TOMORROW Red & Active ---
             setRoundedBackground(llTomorrow, colorRed, 24);
-            tvTomorrow.setTextColor(Color.WHITE);
-            vTomorrowSelector.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
+            tvTomorrow.setTextColor(ContextCompat.getColor(this, R.color.text_white));
+            vTomorrowSelector.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.text_white)));
 
             // --- LOGIC: Show Tomorrow's Movies ---
             darkKnightCard.setVisibility(View.GONE);
@@ -169,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
             openSeatSelection("Spiderman", "Action / 180 min", 15, 2, "3/11/2026", "10:00", bookedSeats);
         });
 
-        btnBookAvengersEndGame.setOnClickListener(v -> {
+        btnBookAvengersEndgame.setOnClickListener(v -> {
             ArrayList<Integer> bookedSeats = new ArrayList<>();
             bookedSeats.add(20);
             bookedSeats.add(17);
@@ -184,8 +193,26 @@ public class MainActivity extends AppCompatActivity {
             bookedSeats.add(21);
             bookedSeats.add(25);
             bookedSeats.add(19);
-            openSeatSelection("MadMax", "Post Apocalyptic / 139 min", 18, 2, "3/11/2026", "02:00", bookedSeats);
+            openSeatSelection("The Shawshank Redemption", "Drama / 142 min", 18, 2, "3/11/2026", "02:00", bookedSeats);
         });
+
+        // Trailer Clicks
+        btnTrailerDarkKnight.setOnClickListener(v -> openTrailer("https://www.youtube.com/watch?v=EXeTwQWrcwY"));
+        btnTrailerInception.setOnClickListener(v -> openTrailer("https://www.youtube.com/watch?v=YoHD9XEInc0"));
+        btnTrailerInterstellar.setOnClickListener(v -> openTrailer("https://www.youtube.com/watch?v=zSWdZVtXT7E"));
+        btnTrailerSpiderman.setOnClickListener(v -> openTrailer("https://www.youtube.com/watch?v=JfVOs4VSpmA"));
+        btnTrailerAvengers.setOnClickListener(v -> openTrailer("https://www.youtube.com/watch?v=TcMBFSGZo1c"));
+        btnTrailerMadMax.setOnClickListener(v -> openTrailer("https://www.youtube.com/watch?v=6hB3S9bIaco"));
+    }
+
+    private void openTrailer(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            // Fallback if no YouTube app or browser
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+        }
     }
 
     private void openSeatSelection(String movieName, String movieDetails, int age, int hallNumber, String date,
