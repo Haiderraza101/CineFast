@@ -454,6 +454,10 @@
                         android:textSize="12sp"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="12dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnBookSpiderman"
                             android:layout_width="0dp"
@@ -498,6 +502,7 @@
                             app:iconPadding="4dp"
                             app:iconGravity="textStart"
                             app:iconTint="@color/text_black" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -543,6 +548,10 @@
                         android:textSize="12sp"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="12dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnBookAvengersEndgame"
                             android:layout_width="0dp"
@@ -587,6 +596,7 @@
                             app:iconPadding="4dp"
                             app:iconGravity="textStart"
                             app:iconTint="@color/text_black" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -632,6 +642,10 @@
                         android:textSize="12sp"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="12dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnBookMadMax"
                             android:layout_width="0dp"
@@ -676,6 +690,7 @@
                             app:iconPadding="4dp"
                             app:iconGravity="textStart"
                             app:iconTint="@color/text_black" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
