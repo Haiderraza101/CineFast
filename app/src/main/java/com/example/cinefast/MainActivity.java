@@ -19,11 +19,12 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     // Buttons & Views
-    Button btnBookDarkKnight, btnBookInception, btnBookInterstellar, btnBookAvengersEndGame, btnBookSpiderman, btnBookMadMax;
-    LinearLayout spiderManCard, avengersEndGameCard, madMaxCard, darkKnightCard, inceptionCard, interstellarCard;
+    Button btnBookDarkKnight, btnBookInception, btnBookInterstellar, btnBookAvengersEndGame, btnBookSpiderman,
+            btnBookMadMax;
+    View spiderManCard, avengersEndGameCard, madMaxCard, darkKnightCard, inceptionCard, interstellarCard;
 
     // Date Selector Views
-    LinearLayout llToday, llTomorrow;
+    View llToday, llTomorrow;
     View vTodaySelector, vTomorrowSelector;
     TextView tvToday, tvTomorrow; // Added these to change text color
 
@@ -74,16 +75,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Helper function to handle the toggling logic
+    // Helper function to handles the toggling logic without XML drawables
     private void updateDateSelector(boolean isTodaySelected) {
+        int colorRed = ContextCompat.getColor(this, R.color.brand_red);
+        int colorGrey = Color.parseColor("#0f172a"); // Keeping this dark shade for inactive state
+
         if (isTodaySelected) {
             // --- UI: Make TODAY Red & Active ---
-            llToday.setBackgroundResource(R.drawable.button_red);
+            setRoundedBackground(llToday, colorRed, 24);
             tvToday.setTextColor(Color.WHITE);
             vTodaySelector.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
 
             // --- UI: Make TOMORROW Grey & Inactive ---
-            llTomorrow.setBackgroundResource(R.drawable.date_selector_bg);
+            setRoundedBackground(llTomorrow, colorGrey, 24);
             tvTomorrow.setTextColor(Color.parseColor("#B0B0B0"));
             vTomorrowSelector.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#666666")));
 
@@ -98,12 +102,12 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
             // --- UI: Make TODAY Grey & Inactive ---
-            llToday.setBackgroundResource(R.drawable.date_selector_bg);
+            setRoundedBackground(llToday, colorGrey, 24);
             tvToday.setTextColor(Color.parseColor("#B0B0B0"));
             vTodaySelector.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#666666")));
 
             // --- UI: Make TOMORROW Red & Active ---
-            llTomorrow.setBackgroundResource(R.drawable.button_red);
+            setRoundedBackground(llTomorrow, colorRed, 24);
             tvTomorrow.setTextColor(Color.WHITE);
             vTomorrowSelector.setBackgroundTintList(ColorStateList.valueOf(Color.WHITE));
 
@@ -118,46 +122,74 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // New helper to set rounded background without XML files
+    private void setRoundedBackground(View view, int color, int radiusDp) {
+        android.graphics.drawable.GradientDrawable shape = new android.graphics.drawable.GradientDrawable();
+        shape.setShape(android.graphics.drawable.GradientDrawable.RECTANGLE);
+        shape.setCornerRadius(radiusDp * getResources().getDisplayMetrics().density);
+        shape.setColor(color);
+        view.setBackground(shape);
+    }
+
     private void setupBookSeatsButtons() {
         // ... (Your existing button logic remains exactly the same) ...
         btnBookDarkKnight.setOnClickListener(v -> {
             ArrayList<Integer> bookedSeats = new ArrayList<>();
-            bookedSeats.add(1); bookedSeats.add(5); bookedSeats.add(7); bookedSeats.add(9);
+            bookedSeats.add(1);
+            bookedSeats.add(5);
+            bookedSeats.add(7);
+            bookedSeats.add(9);
             openSeatSelection("The Dark Knight", "Action / 152 min", 17, 2, "3/10/2026", "10:00", bookedSeats);
         });
 
         btnBookInception.setOnClickListener(v -> {
             ArrayList<Integer> bookedSeats = new ArrayList<>();
-            bookedSeats.add(10); bookedSeats.add(11); bookedSeats.add(20); bookedSeats.add(18);
+            bookedSeats.add(10);
+            bookedSeats.add(11);
+            bookedSeats.add(20);
+            bookedSeats.add(18);
             openSeatSelection("Inception", "Sci-Fi / 148 min", 18, 1, "3/10/2026", "09:00", bookedSeats);
         });
 
         btnBookInterstellar.setOnClickListener(v -> {
             ArrayList<Integer> bookedSeats = new ArrayList<>();
-            bookedSeats.add(19); bookedSeats.add(20); bookedSeats.add(18); bookedSeats.add(21);
+            bookedSeats.add(19);
+            bookedSeats.add(20);
+            bookedSeats.add(18);
+            bookedSeats.add(21);
             openSeatSelection("Interstellar", "Sci-Fi / 169 min", 17, 1, "3/10/2026", "12:00", bookedSeats);
         });
 
         btnBookSpiderman.setOnClickListener(v -> {
             ArrayList<Integer> bookedSeats = new ArrayList<>();
-            bookedSeats.add(19); bookedSeats.add(17); bookedSeats.add(6); bookedSeats.add(7);
+            bookedSeats.add(19);
+            bookedSeats.add(17);
+            bookedSeats.add(6);
+            bookedSeats.add(7);
             openSeatSelection("Spiderman", "Action / 180 min", 15, 2, "3/11/2026", "10:00", bookedSeats);
         });
 
         btnBookAvengersEndGame.setOnClickListener(v -> {
             ArrayList<Integer> bookedSeats = new ArrayList<>();
-            bookedSeats.add(20); bookedSeats.add(17); bookedSeats.add(9); bookedSeats.add(8);
+            bookedSeats.add(20);
+            bookedSeats.add(17);
+            bookedSeats.add(9);
+            bookedSeats.add(8);
             openSeatSelection("Avengers: EndGame", "Action / 184 min", 15, 2, "3/11/2026", "01:00", bookedSeats);
         });
 
         btnBookMadMax.setOnClickListener(v -> {
             ArrayList<Integer> bookedSeats = new ArrayList<>();
-            bookedSeats.add(20); bookedSeats.add(21); bookedSeats.add(25); bookedSeats.add(19);
+            bookedSeats.add(20);
+            bookedSeats.add(21);
+            bookedSeats.add(25);
+            bookedSeats.add(19);
             openSeatSelection("MadMax", "Post Apocalyptic / 139 min", 18, 2, "3/11/2026", "02:00", bookedSeats);
         });
     }
 
-    private void openSeatSelection(String movieName, String movieDetails, int age, int hallNumber, String date, String time, ArrayList<Integer> bookedSeats) {
+    private void openSeatSelection(String movieName, String movieDetails, int age, int hallNumber, String date,
+            String time, ArrayList<Integer> bookedSeats) {
         Intent intent = new Intent(MainActivity.this, SeatSelectionActivity.class);
         intent.putExtra("movieName_key", movieName);
         intent.putExtra("movieDetails_key", movieDetails);
@@ -165,7 +197,8 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("hallNumber_key", hallNumber);
         intent.putExtra("date_key", date);
         intent.putExtra("time_key", time);
-        intent.putIntegerArrayListExtra("bookedSeats_key", bookedSeats); // Changed to putIntegerArrayListExtra for safety
+        intent.putIntegerArrayListExtra("bookedSeats_key", bookedSeats); // Changed to putIntegerArrayListExtra for
+                                                                         // safety
         startActivity(intent);
     }
 }

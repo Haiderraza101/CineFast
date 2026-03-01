@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cine"
-                android:textColor="#FF0000"
+                android:textColor="@color/brand_red"
                 android:textSize="28sp"
                 android:textStyle="bold" />
             <TextView
@@ -50,53 +50,71 @@
             android:orientation="horizontal"
             android:layout_marginBottom="32dp">
 
-            <LinearLayout
+            <!-- Today Pill -->
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/llToday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_red"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:gravity="center_vertical"
+                app:cardBackgroundColor="#FF0000"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp"
                 android:layout_marginEnd="12dp">
-                <View
-                    android:id="@+id/vTodaySelector"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:background="@drawable/date_selector_bg"
-                    android:backgroundTint="#FFFFFF"
-                    android:layout_marginEnd="8dp" />
-                <TextView
-                    android:id="@+id/tvToday"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Today"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/vTodaySelector"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardCornerRadius="6dp"
+                        app:cardElevation="0dp"
+                        android:layout_marginEnd="8dp" />
+                    <TextView
+                        android:id="@+id/tvToday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Today"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-            <LinearLayout
+            <!-- Tomorrow Pill -->
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/llTomorrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/date_selector_bg"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:gravity="center_vertical">
-                <View
-                    android:id="@+id/vTomorrowSelector"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:background="@drawable/date_selector_bg"
-                    android:backgroundTint="#666666"
-                    android:layout_marginEnd="8dp" />
-                <TextView
-                    android:id="@+id/tvTomorrow"
+                app:cardBackgroundColor="#0f172a"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="0dp">
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tomorrow"
-                    android:textColor="#B0B0B0" />
-            </LinearLayout>
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/vTomorrowSelector"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        app:cardBackgroundColor="#666666"
+                        app:cardCornerRadius="6dp"
+                        app:cardElevation="0dp"
+                        android:layout_marginEnd="8dp" />
+                    <TextView
+                        android:id="@+id/tvTomorrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tomorrow"
+                        android:textColor="#B0B0B0" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
 
         <TextView
@@ -109,323 +127,342 @@
             android:layout_marginBottom="24dp" />
 
         <!-- Movie 1: The Dark Knight -->
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/darkKnightCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/movie_card_bg"
-            android:padding="16dp"
-            android:orientation="horizontal"
+            app:cardBackgroundColor="@color/card_grey"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
             android:layout_marginBottom="16dp">
-
-            <View
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/poster_dark_knight" />
-
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginStart="16dp">
+                android:padding="16dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!-- Movie Poster or Icon -->
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/poster_dark_knight"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/RoundedIcon" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="The Dark Knight"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Action / 152 min"
-                    android:textColor="#B0B0B0"
-                    android:textSize="12sp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="12dp" />
-
-                <Button
-                    android:id="@+id/btnBookDarkKnight"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:text="Book Seats"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:backgroundTint="#FF0000"
-                    android:textAllCaps="false"
-                    app:cornerRadius="8dp" />
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="The Dark Knight"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Action / 152 min"
+                        android:textColor="#B0B0B0"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBookDarkKnight"
+                        android:layout_width="120dp"
+                        android:layout_height="45dp"
+                        android:text="Book Seats"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:backgroundTint="#FF0000"
+                        android:textAllCaps="false"
+                        app:cornerRadius="8dp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Movie 2: Inception -->
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/inceptionCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/movie_card_bg"
-            android:padding="16dp"
-            android:orientation="horizontal"
+            app:cardBackgroundColor="@color/card_grey"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
             android:layout_marginBottom="16dp">
-
-            <View
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/poster_inception" />
-
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginStart="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                android:padding="16dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/poster_inception"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/RoundedIcon" />
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Inception"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sci-Fi / 148 min"
-                    android:textColor="#B0B0B0"
-                    android:textSize="12sp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="12dp" />
-
-                <Button
-                    android:id="@+id/btnBookInception"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:text="Book Seats"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:backgroundTint="#FF0000"
-                    android:textAllCaps="false"
-                    app:cornerRadius="8dp" />
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Inception"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sci-Fi / 148 min"
+                        android:textColor="#B0B0B0"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBookInception"
+                        android:layout_width="120dp"
+                        android:layout_height="45dp"
+                        android:text="Book Seats"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:backgroundTint="#FF0000"
+                        android:textAllCaps="false"
+                        app:cornerRadius="8dp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Movie 3: Interstellar -->
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/interstellarCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/movie_card_bg"
-            android:padding="16dp"
-            android:orientation="horizontal"
+            app:cardBackgroundColor="@color/card_grey"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
             android:layout_marginBottom="16dp">
-
-            <View
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/poster_interstellar" />
-
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginStart="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                android:padding="16dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/poster_interstellar"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/RoundedIcon" />
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Interstellar"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sci-Fi / 169 min"
-                    android:textColor="#B0B0B0"
-                    android:textSize="12sp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="12dp" />
-
-                <Button
-                    android:id="@+id/btnBookInterstellar"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:text="Book Seats"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:backgroundTint="#FF0000"
-                    android:textAllCaps="false"
-                    app:cornerRadius="8dp" />
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Interstellar"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sci-Fi / 169 min"
+                        android:textColor="#B0B0B0"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBookInterstellar"
+                        android:layout_width="120dp"
+                        android:layout_height="45dp"
+                        android:text="Book Seats"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:backgroundTint="#FF0000"
+                        android:textAllCaps="false"
+                        app:cornerRadius="8dp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/spidermanCard"
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/movie_card_bg"
-            android:padding="16dp"
-            android:orientation="horizontal"
+            app:cardBackgroundColor="@color/card_grey"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
             android:layout_marginBottom="16dp">
-
-            <View
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/poster_interstellar" />
-
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginStart="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                android:padding="16dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/poster_interstellar"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/RoundedIcon" />
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Spiderman"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Action / 180 min"
-                    android:textColor="#B0B0B0"
-                    android:textSize="12sp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="12dp" />
-
-                <Button
-                    android:id="@+id/btnBookSpiderman"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:text="Book Seats"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:backgroundTint="#FF0000"
-                    android:textAllCaps="false"
-                    app:cornerRadius="8dp" />
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Spiderman"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Action / 180 min"
+                        android:textColor="#B0B0B0"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBookSpiderman"
+                        android:layout_width="120dp"
+                        android:layout_height="45dp"
+                        android:text="Book Seats"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:backgroundTint="#FF0000"
+                        android:textAllCaps="false"
+                        app:cornerRadius="8dp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/avengersEndGameCard"
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/movie_card_bg"
-            android:padding="16dp"
-            android:orientation="horizontal"
+            app:cardBackgroundColor="@color/card_grey"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
             android:layout_marginBottom="16dp">
-
-            <View
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/poster_interstellar" />
-
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginStart="16dp">
-
-                <TextView
-
-                    android:layout_width="wrap_content"
+                android:padding="16dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/poster_interstellar"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/RoundedIcon" />
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Avengers: EndGame"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Action / 184 min"
-                    android:textColor="#B0B0B0"
-                    android:textSize="12sp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="12dp" />
-
-                <Button
-                    android:id="@+id/btnBookAvengersEndgame"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:text="Book Seats"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:backgroundTint="#FF0000"
-                    android:textAllCaps="false"
-                    app:cornerRadius="8dp" />
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Avengers: EndGame"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Action / 184 min"
+                        android:textColor="#B0B0B0"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBookAvengersEndgame"
+                        android:layout_width="120dp"
+                        android:layout_height="45dp"
+                        android:text="Book Seats"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:backgroundTint="#FF0000"
+                        android:textAllCaps="false"
+                        app:cornerRadius="8dp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/madMaxCard"
             android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/movie_card_bg"
-            android:padding="16dp"
-            android:orientation="horizontal"
+            app:cardBackgroundColor="@color/card_grey"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
             android:layout_marginBottom="16dp">
-
-            <View
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/poster_interstellar" />
-
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginStart="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                android:padding="16dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/poster_interstellar"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/RoundedIcon" />
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="MadMax"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Post Apocalyptic / 139 min"
-                    android:textColor="#B0B0B0"
-                    android:textSize="12sp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="12dp" />
-
-                <Button
-                    android:id="@+id/btnBookMadMax"
-                    android:layout_width="120dp"
-                    android:layout_height="40dp"
-                    android:text="Book Seats"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:backgroundTint="#FF0000"
-                    android:textAllCaps="false"
-                    app:cornerRadius="8dp" />
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MadMax"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Post Apocalyptic / 139 min"
+                        android:textColor="#B0B0B0"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="12dp" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBookMadMax"
+                        android:layout_width="120dp"
+                        android:layout_height="45dp"
+                        android:text="Book Seats"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:backgroundTint="#FF0000"
+                        android:textAllCaps="false"
+                        app:cornerRadius="8dp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 </ScrollView>

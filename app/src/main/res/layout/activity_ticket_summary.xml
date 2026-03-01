@@ -203,7 +203,7 @@
             android:id="@+id/btnSendTicket"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:backgroundTint="#f20000"
+            android:backgroundTint="@color/brand_red"
             android:text="Share Ticket"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
