@@ -192,29 +192,38 @@
         </LinearLayout>
     </LinearLayout>
 
-
-    <!-- ===== SCREEN ARC (wide flat cinema dome arc matching reference) ===== -->
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
         android:background="@color/bg_dark"
         android:clipChildren="true"
-        android:clipToPadding="true"
-        android:orientation="vertical">
+        android:clipToPadding="true">
 
-        <!-- Giant oval: 600dp wide, bleeds off screen sides, only top gentle arc visible -->
         <View
-            android:layout_width="600dp"
-            android:layout_height="400dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/screen_glow" />
+
+        <View
+            android:layout_width="800dp"
+            android:layout_height="600dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="-320dp"
-            android:layout_marginStart="-120dp"
-            android:layout_marginEnd="-120dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/screen_arc" />
-    </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="12dp"
+            android:letterSpacing="0.3"
+            android:text="SCREEN"
+            android:textColor="@color/text_placeholder"
+            android:textSize="10sp" />
+    </FrameLayout>
 
 
-    <!-- ===== SEAT GRID ===== -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -230,7 +239,6 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp">
 
-            <!-- Row 1: Seats 1-4 | aisle | Seats 5-8 (mapped to btn IDs 1-8) -->
             <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="2dp">
                 <Button android:id="@+id/btnSeat1"  style="@style/SeatButtonStyle" />
                 <Button android:id="@+id/btnSeat2"  style="@style/SeatButtonStyle" />
@@ -243,7 +251,6 @@
                 <Button android:id="@+id/btnSeat8"  style="@style/SeatButtonStyle" />
             </LinearLayout>
 
-            <!-- Row 2: Seats 9-16 -->
             <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="2dp">
                 <Button android:id="@+id/btnSeat9"  style="@style/SeatButtonStyle" />
                 <Button android:id="@+id/btnSeat10" style="@style/SeatButtonStyle" />
@@ -282,7 +289,6 @@
                 <Button android:id="@+id/btnSeat32" style="@style/SeatButtonStyle" />
             </LinearLayout>
 
-            <!-- Row 5: Seats 33-36 (only 4 on each side, last row shorter) -->
             <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="2dp">
                 <Button android:id="@+id/btnSeat33" style="@style/SeatButtonStyle" />
                 <Button android:id="@+id/btnSeat34" style="@style/SeatButtonStyle" />
@@ -294,7 +300,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- ===== LEGEND ===== -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -302,7 +307,6 @@
         android:paddingVertical="10dp"
         android:orientation="horizontal">
 
-        <!-- Booked: filled gray circle -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="12dp"
             android:layout_height="12dp"
@@ -318,11 +322,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp" />
 
-        <!-- Yours: filled yellow circle -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="12dp"
             android:layout_height="12dp"
-            app:cardBackgroundColor="@color/legend_yours"
+            app:cardBackgroundColor="@color/seat_selected"
             app:cardCornerRadius="6dp"
             app:cardElevation="0dp"
             android:layout_marginEnd="5dp" />
@@ -334,7 +337,6 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp" />
 
-        <!-- Available: empty circle (outline only, no fill) -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="12dp"
             android:layout_height="12dp"
@@ -352,7 +354,6 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <!-- ===== BOTTOM BUTTONS ===== -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -361,7 +362,6 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
-        <!-- Book Seats: Solid Red Pill -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnConfirm"
             android:layout_width="0dp"
@@ -377,7 +377,6 @@
 
         <View android:layout_width="12dp" android:layout_height="1dp" />
 
-        <!-- Proceed to Snacks: White bg + Dark text Pill (matching reference) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnProceedToSnacks"
             android:layout_width="0dp"
