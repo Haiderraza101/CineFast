@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ public class TicketSummaryActivity extends AppCompatActivity {
   private TextView tvFinalMovieName, tvAge, tvHallNumber, tvDate, tvTime, tvFinalTotalPrice;
   private LinearLayout llTicketsContainer, llSnacksContainer;
   private Button btnSendTicket, btnSummaryBack;
+  private ImageView ivFinalMoviePoster;
 
   private String movieName, date, time, age, hallNumber;
   private ArrayList<Integer> selectedSeats;
@@ -53,6 +55,7 @@ public class TicketSummaryActivity extends AppCompatActivity {
 
     btnSendTicket = findViewById(R.id.btnSendTicket);
     btnSummaryBack = findViewById(R.id.btnSummaryBack);
+    ivFinalMoviePoster = findViewById(R.id.ivFinalMoviePoster);
   }
 
   private void getIntentData() {
@@ -73,6 +76,18 @@ public class TicketSummaryActivity extends AppCompatActivity {
       tvHallNumber.setText(hallNumber);
       tvDate.setText(date);
       tvTime.setText(time);
+
+      if (ivFinalMoviePoster != null && movieName != null) {
+        if (movieName.equalsIgnoreCase("The Night Rider")) {
+          ivFinalMoviePoster.setImageResource(R.drawable.the_night_rider);
+        } else if (movieName.equalsIgnoreCase("Inception")) {
+          ivFinalMoviePoster.setImageResource(R.drawable.inception);
+        } else if (movieName.equalsIgnoreCase("Interstellar")) {
+          ivFinalMoviePoster.setImageResource(R.drawable.interstellar);
+        } else {
+          ivFinalMoviePoster.setImageResource(R.drawable.interstellar);
+        }
+      }
     }
   }
 
