@@ -25,5 +25,6 @@
     <color name="card_mid">#333333</color>
     <color name="btn_minus">#3e4a6d</color>
     <color name="screen_arc">#4CAF50</color>
+    <color name="snack_hotdog">#795548</color>
     <color name="legend_yours">#FFD700</color>
 </resources>
