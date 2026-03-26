@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:clipChildren="false"
+    android:orientation="vertical">
+
+    <!-- ===== HEADER ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#CACACA"
+        android:orientation="vertical"
+        android:paddingTop="48dp"
+        android:paddingBottom="16dp"
+        android:paddingHorizontal="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                app:cardBackgroundColor="#E0E0E0"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="0dp"
+                android:layout_centerVertical="true">
+                <Button
+                    android:id="@+id/btnBack"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:text="‹"
+                    android:textColor="#333333"
+                    android:textSize="22sp"
+                    android:padding="0dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:insetLeft="0dp"
+                    android:insetRight="0dp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tvMovieName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Movie Name"
+                android:textColor="#111111"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/tvAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/screen_arc"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:text="+13"
+                android:textColor="@color/text_white"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:layout_marginEnd="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/screen_arc"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:text="EN"
+                android:textColor="@color/text_white"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:layout_marginEnd="6dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ScreenX"
+                android:textColor="#555555"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="14dp"
+            android:weightSum="4">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.2"
+                android:orientation="vertical"
+                android:gravity="start">
+                <TextView
+                    android:text="⊙ Theater"
+                    android:textColor="#888888"
+                    android:textSize="9sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tvMovieDetails"
+                    android:text="Stars (90°Mall)"
+                    android:textColor="#111111"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:orientation="vertical"
+                android:gravity="start">
+                <TextView
+                    android:text="⋯ Hall"
+                    android:textColor="#888888"
+                    android:textSize="9sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tvHallNumber"
+                    android:text="01"
+                    android:textColor="#111111"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="start">
+                <TextView
+                    android:text="▦ Date"
+                    android:textColor="#888888"
+                    android:textSize="9sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:text="12/12"
+                    android:textColor="#111111"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="start">
+                <TextView
+                    android:text="⏱ Time"
+                    android:textColor="#888888"
+                    android:textSize="9sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:text="10:00"
+                    android:textColor="#111111"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/bg_dark"
+        android:clipChildren="true"
+        android:clipToPadding="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/screen_glow" />
+
+        <View
+            android:layout_width="800dp"
+            android:layout_height="600dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/screen_arc" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="12dp"
+            android:letterSpacing="0.3"
+            android:text="SCREEN"
+            android:textColor="@color/text_placeholder"
+            android:textSize="10sp" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="2dp">
+                <Button android:id="@+id/btnSeat1"  style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat2"  style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat3"  style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat4"  style="@style/SeatButtonStyle" />
+                <View android:layout_width="20dp" android:layout_height="34dp" />
+                <Button android:id="@+id/btnSeat5"  style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat6"  style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat7"  style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat8"  style="@style/SeatButtonStyle" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="2dp">
+                <Button android:id="@+id/btnSeat9"  style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat10" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat11" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat12" style="@style/SeatButtonStyle" />
+                <View android:layout_width="20dp" android:layout_height="34dp" />
+                <Button android:id="@+id/btnSeat13" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat14" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat15" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat16" style="@style/SeatButtonStyle" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="2dp">
+                <Button android:id="@+id/btnSeat17" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat18" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat19" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat20" style="@style/SeatButtonStyle" />
+                <View android:layout_width="20dp" android:layout_height="34dp" />
+                <Button android:id="@+id/btnSeat21" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat22" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat23" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat24" style="@style/SeatButtonStyle" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="2dp">
+                <Button android:id="@+id/btnSeat25" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat26" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat27" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat28" style="@style/SeatButtonStyle" />
+                <View android:layout_width="20dp" android:layout_height="34dp" />
+                <Button android:id="@+id/btnSeat29" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat30" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat31" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat32" style="@style/SeatButtonStyle" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="2dp">
+                <Button android:id="@+id/btnSeat33" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat34" style="@style/SeatButtonStyle" />
+                <View android:layout_width="20dp" android:layout_height="34dp" />
+                <Button android:id="@+id/btnSeat35" style="@style/SeatButtonStyle" />
+                <Button android:id="@+id/btnSeat36" style="@style/SeatButtonStyle" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingVertical="10dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            app:cardBackgroundColor="@color/text_placeholder"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="0dp"
+            android:layout_marginEnd="5dp" />
+        <TextView
+            android:text="Booked"
+            android:textColor="@color/text_muted"
+            android:textSize="11sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            app:cardBackgroundColor="@color/seat_selected"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="0dp"
+            android:layout_marginEnd="5dp" />
+        <TextView
+            android:text="Yours"
+            android:textColor="@color/text_muted"
+            android:textSize="11sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            app:cardBackgroundColor="@color/bg_dark"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/text_placeholder"
+            app:strokeWidth="1.5dp"
+            android:layout_marginEnd="5dp" />
+        <TextView
+            android:text="Available"
+            android:textColor="@color/text_muted"
+            android:textSize="11sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_dark"
+        android:padding="16dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirm"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="52dp"
+            android:text="Book Seats"
+            android:textColor="@color/text_white"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/brand_red"
+            app:cornerRadius="26dp" />
+
+        <View android:layout_width="12dp" android:layout_height="1dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnProceedToSnacks"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="52dp"
+            android:text="Proceed to Snacks"
+            android:textColor="#111111"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:textAllCaps="false"
+            android:backgroundTint="#FFFFFF"
+            app:cornerRadius="26dp"
+            app:strokeColor="#CCCCCC"
+            app:strokeWidth="1dp" />
+    </LinearLayout>
+</LinearLayout>
