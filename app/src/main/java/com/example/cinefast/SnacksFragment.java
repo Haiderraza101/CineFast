@@ -30,10 +30,11 @@ public class SnacksFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static SnacksFragment newInstance(String movieName) {
+    public static SnacksFragment newInstance(String movieName, ArrayList<Snack> existingSnacks) {
         SnacksFragment fragment = new SnacksFragment();
         Bundle args = new Bundle();
         args.putString("movieName", movieName);
+        args.putParcelableArrayList("existing_snacks", existingSnacks);
         fragment.setArguments(args);
         return fragment;
     }
@@ -43,6 +44,7 @@ public class SnacksFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             movieName = getArguments().getString("movieName");
+            snackList = getArguments().getParcelableArrayList("existing_snacks");
         }
     }
 
@@ -51,8 +53,11 @@ public class SnacksFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_snacks, container, false);
         initialize(view);
-        loadData();
+        if (snackList == null || snackList.isEmpty()) {
+            loadData();
+        }
         setupListView();
+        updateTotal(); // Initialize total on load
         return view;
     }
 
@@ -67,9 +72,15 @@ public class SnacksFragment extends Fragment {
         }
 
         btnConfirm.setOnClickListener(v -> {
-            Toast.makeText(requireContext(), "Snacks Confirmed!", Toast.LENGTH_SHORT).show();
-            // In a real app, transition back or to Summary
-            ((MainActivity)getActivity()).loadFragment(new HomeFragment());
+            // Prepare Result
+            Bundle result = new Bundle();
+            result.putParcelableArrayList("selected_snacks", snackList);
+            
+            // Send back to SeatSelectionFragment
+            getParentFragmentManager().setFragmentResult("snacks_request", result);
+            
+            // Go back
+            getParentFragmentManager().popBackStack();
         });
     }
 
@@ -88,8 +99,10 @@ public class SnacksFragment extends Fragment {
 
     private void updateTotal() {
         double total = 0;
-        for (Snack s : snackList) {
-            total += s.getQuantity() * s.getPrice();
+        if (snackList != null) {
+            for (Snack s : snackList) {
+                total += s.getQuantity() * s.getPrice();
+            }
         }
         tvSnacksTotal.setText(String.format("$%.2f", total));
     }
