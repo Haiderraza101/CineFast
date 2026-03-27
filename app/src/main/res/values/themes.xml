@@ -1,8 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.CineFAST" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">#000000</item>
+        <item name="android:navigationBarColor">#000000</item>
+        <item name="colorPrimary">#E51C23</item>
+        <item name="colorSecondary">#FFFFFF</item>
     </style>
 
     <style name="Theme.CineFAST" parent="Base.Theme.CineFAST" />
@@ -15,22 +17,64 @@
     </style>
 
     <style name="SeatButtonStyle">
-        <item name="android:layout_width">34dp</item>
-        <item name="android:layout_height">34dp</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
         <item name="android:layout_margin">3dp</item>
         <item name="android:backgroundTint">@color/seat_available</item>
         <item name="android:textColor">@color/text_white</item>
         <item name="android:textSize">0sp</item>
+        <item name="cornerRadius">8dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
         <item name="android:insetLeft">0dp</item>
         <item name="android:insetRight">0dp</item>
         <item name="android:minWidth">0dp</item>
         <item name="android:minHeight">0dp</item>
+        <item name="android:padding">0dp</item>
     </style>
 
     <style name="RoundedIcon">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="BookingInfoContainerStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="BookingInfoLabelStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#AAAAAA</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:drawablePadding">4dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="tint">#AAAAAA</item>
+    </style>
+
+    <style name="BookingInfoValueStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="LegendIconStyle">
+        <item name="android:layout_width">11dp</item>
+        <item name="android:layout_height">11dp</item>
+        <item name="android:background">@drawable/circle_solid_white</item>
+    </style>
+
+    <style name="LegendTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">12sp</item>
     </style>
 </resources>
