@@ -20,7 +20,8 @@ public class ComingSoonFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie_list, container, false);
         init(view);
         loadData();
@@ -34,10 +35,12 @@ public class ComingSoonFragment extends Fragment {
 
     private void loadData() {
         movieData = new ArrayList<>();
-        // Reusing same drawable for placeholder data as requested minimum 3
-        movieData.add(new Movie("Dune: Part Two", "Sci-Fi / 166 min", R.drawable.interstellar, "https://www.youtube.com/watch?v=Way9Dexny3w", true));
-        movieData.add(new Movie("The Batman", "Action / 176 min", R.drawable.inception, "https://www.youtube.com/watch?v=mqqft22Sk28", true));
-        movieData.add(new Movie("Tenet", "Sci-Fi / 150 min", R.drawable.inception, "https://www.youtube.com/watch?v=LdOM0x0XDwM", true));
+        movieData.add(new Movie("Dune: Part Two", "Sci-Fi / 166 min", R.drawable.interstellar,
+                "https://www.youtube.com/watch?v=Way9Dexny3w", true));
+        movieData.add(new Movie("The Batman", "Action / 176 min", R.drawable.inception,
+                "https://www.youtube.com/watch?v=mqqft22Sk28", true));
+        movieData.add(new Movie("Tenet", "Sci-Fi / 150 min", R.drawable.inception,
+                "https://www.youtube.com/watch?v=LdOM0x0XDwM", true));
     }
 
     private void setupRecyclerView() {
@@ -45,7 +48,7 @@ public class ComingSoonFragment extends Fragment {
         MovieAdapter adapter = new MovieAdapter(requireContext(), movieData, new MovieAdapter.OnMovieClickListener() {
             @Override
             public void onBookClick(Movie movie) {
-                ((MainActivity)getActivity()).navigateToSeatSelection(movie);
+                ((MainActivity) getActivity()).navigateToSeatSelection(movie);
             }
 
             @Override

@@ -22,6 +22,8 @@ public class HomeFragment extends Fragment {
     private ViewPager2 viewPager;
     private ViewPagerAdapter adapter;
     private ImageButton btnMenu;
+    private android.widget.Button btnToday, btnTomorrow;
+    private String selectedDate;
 
     @Nullable
     @Override
@@ -39,6 +41,47 @@ public class HomeFragment extends Fragment {
 
         if (btnMenu != null) {
             btnMenu.setOnClickListener(v -> showPopupMenu(v));
+        }
+
+        btnToday = view.findViewById(R.id.btnToday);
+        btnTomorrow = view.findViewById(R.id.btnTomorrow);
+
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd.MM.yyyy", java.util.Locale.getDefault());
+        String today = sdf.format(new java.util.Date());
+        
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        cal.add(java.util.Calendar.DAY_OF_YEAR, 1);
+        String tomorrow = sdf.format(cal.getTime());
+
+        SharedPreferences sPref = requireContext().getSharedPreferences("booking_data", Context.MODE_PRIVATE);
+        selectedDate = sPref.getString("selected_date", today);
+
+        updateDateUI(today, tomorrow);
+
+        btnToday.setOnClickListener(v -> {
+            selectedDate = today;
+            sPref.edit().putString("selected_date", today).apply();
+            updateDateUI(today, tomorrow);
+        });
+
+        btnTomorrow.setOnClickListener(v -> {
+            selectedDate = tomorrow;
+            sPref.edit().putString("selected_date", tomorrow).apply();
+            updateDateUI(today, tomorrow);
+        });
+    }
+
+    private void updateDateUI(String today, String tomorrow) {
+        if (selectedDate.equals(today)) {
+            btnToday.setBackgroundTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#FF0000")));
+            btnToday.setTextColor(android.graphics.Color.WHITE);
+            btnTomorrow.setBackgroundTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#1A1A2E")));
+            btnTomorrow.setTextColor(android.graphics.Color.parseColor("#B0B0B0"));
+        } else {
+            btnToday.setBackgroundTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#1A1A2E")));
+            btnToday.setTextColor(android.graphics.Color.parseColor("#B0B0B0"));
+            btnTomorrow.setBackgroundTintList(android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#FF0000")));
+            btnTomorrow.setTextColor(android.graphics.Color.WHITE);
         }
     }
 

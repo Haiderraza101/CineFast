@@ -50,14 +50,15 @@ public class SnacksFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_snacks, container, false);
         initialize(view);
         if (snackList == null || snackList.isEmpty()) {
             loadData();
         }
         setupListView();
-        updateTotal(); // Initialize total on load
+        updateTotal();
         return view;
     }
 
@@ -75,10 +76,10 @@ public class SnacksFragment extends Fragment {
             // Prepare Result
             Bundle result = new Bundle();
             result.putParcelableArrayList("selected_snacks", snackList);
-            
+
             // Send back to SeatSelectionFragment
             getParentFragmentManager().setFragmentResult("snacks_request", result);
-            
+
             // Go back
             getParentFragmentManager().popBackStack();
         });
@@ -86,10 +87,14 @@ public class SnacksFragment extends Fragment {
 
     private void loadData() {
         snackList = new ArrayList<>();
-        snackList.add(new Snack("Popcorn", "Large / Buttered", 8.99, R.drawable.popcorn, ContextCompat.getColor(requireContext(), R.color.snack_popcorn)));
-        snackList.add(new Snack("Nachos", "With Cheese Dip", 7.99, R.drawable.nacho, ContextCompat.getColor(requireContext(), R.color.snack_nachos)));
-        snackList.add(new Snack("Soft Drink", "Large / Any Flavor", 5.99, R.drawable.softdrink, ContextCompat.getColor(requireContext(), R.color.snack_soda)));
-        snackList.add(new Snack("Hot Dog", "Spicy / Mustard", 6.99, R.drawable.nacho, ContextCompat.getColor(requireContext(), R.color.snack_hotdog)));
+        snackList.add(new Snack("Popcorn", "Large / Buttered", 8.99, R.drawable.popcorn,
+                ContextCompat.getColor(requireContext(), R.color.snack_popcorn)));
+        snackList.add(new Snack("Nachos", "With Cheese Dip", 7.99, R.drawable.nacho,
+                ContextCompat.getColor(requireContext(), R.color.snack_nachos)));
+        snackList.add(new Snack("Soft Drink", "Large / Any Flavor", 5.99, R.drawable.softdrink,
+                ContextCompat.getColor(requireContext(), R.color.snack_soda)));
+        snackList.add(new Snack("Hot Dog", "Spicy / Mustard", 6.99, R.drawable.nacho,
+                ContextCompat.getColor(requireContext(), R.color.snack_hotdog)));
     }
 
     private void setupListView() {

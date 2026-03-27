@@ -6,8 +6,6 @@
     android:background="@color/bg_dark"
     android:clipChildren="false"
     android:orientation="vertical">
-
-    <!-- ===== HEADER (Light/White bg matching reference image) ===== -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +15,6 @@
         android:paddingBottom="16dp"
         android:paddingHorizontal="16dp">
 
-        <!-- Back + Movie Name Row -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -55,7 +52,6 @@
                 android:textStyle="bold" />
         </RelativeLayout>
 
-        <!-- Rating + Format Row -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

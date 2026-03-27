@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,12 +31,14 @@ public class SeatSelectionFragment extends Fragment {
     private boolean isComingSoon;
 
     private TextView tvMovieName;
-    private Button btnConfirm, btnBack, btnProceedToSnacks;
+    private ImageView ivHeaderMovie;
+    private View btnBack;
+    private Button btnConfirm, btnProceedToSnacks;
+    private TextView tvDate;
     private List<Button> allSeatButtons = new ArrayList<>();
     private ArrayList<Integer> selectedSeatIds = new ArrayList<>();
     private ArrayList<Snack> selectedSnacks = new ArrayList<>();
 
-    private final int MAX_SEATS = 3;
     private final int TICKET_PRICE = 15;
 
     public SeatSelectionFragment() {
@@ -61,7 +64,6 @@ public class SeatSelectionFragment extends Fragment {
             isComingSoon = getArguments().getBoolean(ARG_IS_COMING_SOON);
         }
 
-        // Listen for snack selection results
         getParentFragmentManager().setFragmentResultListener("snacks_request", this, (requestKey, bundle) -> {
             ArrayList<Snack> result = bundle.getParcelableArrayList("selected_snacks");
             if (result != null) {
@@ -84,12 +86,31 @@ public class SeatSelectionFragment extends Fragment {
 
     private void initializeViews(View view) {
         tvMovieName = view.findViewById(R.id.tvMovieName);
+        ivHeaderMovie = view.findViewById(R.id.ivHeaderMovie);
         btnConfirm = view.findViewById(R.id.btnConfirm);
         btnBack = view.findViewById(R.id.btnBack);
         btnProceedToSnacks = view.findViewById(R.id.btnProceedToSnacks);
+        tvDate = view.findViewById(R.id.tvDate);
+
+        android.content.SharedPreferences sPref = requireContext().getSharedPreferences("booking_data",
+                android.content.Context.MODE_PRIVATE);
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd.MM.yyyy", java.util.Locale.getDefault());
+        String defaultDate = sdf.format(new java.util.Date());
+        String selectedDate = sPref.getString("selected_date", defaultDate);
+        if (tvDate != null) {
+            tvDate.setText(selectedDate);
+        }
 
         if (tvMovieName != null)
             tvMovieName.setText(movieName);
+
+        if (ivHeaderMovie != null && movieName != null) {
+            String posterName = movieName.toLowerCase().replace(" ", "");
+            int resId = getResources().getIdentifier(posterName, "drawable", requireContext().getPackageName());
+            if (resId != 0) {
+                ivHeaderMovie.setImageResource(resId);
+            }
+        }
 
         if (isComingSoon) {
             btnConfirm.setText("Coming Soon");
@@ -110,7 +131,7 @@ public class SeatSelectionFragment extends Fragment {
     }
 
     private void setupSeatGrid(View view) {
-        for (int i = 1; i <= 36; i++) {
+        for (int i = 1; i <= 44; i++) {
             String buttonID = "btnSeat" + i;
             int resID = getResources().getIdentifier(buttonID, "id", requireContext().getPackageName());
             if (resID == 0)
@@ -123,8 +144,13 @@ public class SeatSelectionFragment extends Fragment {
             allSeatButtons.add(btn);
             final int currentSeatNum = i;
 
-            btn.setBackgroundTintList(
-                    ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.seat_available)));
+            if (selectedSeatIds.contains(i)) {
+                btn.setBackgroundTintList(
+                        ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.seat_selected)));
+            } else {
+                btn.setBackgroundTintList(
+                        ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.seat_available)));
+            }
 
             if (!isComingSoon) {
                 btn.setOnClickListener(v -> toggleSeatSelection(btn, currentSeatNum));
@@ -133,6 +159,7 @@ public class SeatSelectionFragment extends Fragment {
                 btn.setAlpha(0.7f);
             }
         }
+        updatePriceAndButton();
     }
 
     private void toggleSeatSelection(Button btn, int seatNum) {
@@ -141,10 +168,6 @@ public class SeatSelectionFragment extends Fragment {
             btn.setBackgroundTintList(
                     ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.seat_available)));
         } else {
-            if (selectedSeatIds.size() >= MAX_SEATS) {
-                Toast.makeText(getContext(), "Max " + MAX_SEATS + " seats allowed!", Toast.LENGTH_SHORT).show();
-                return;
-            }
             selectedSeatIds.add(seatNum);
             btn.setBackgroundTintList(
                     ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.seat_selected)));
@@ -178,8 +201,10 @@ public class SeatSelectionFragment extends Fragment {
             });
         } else {
             btnConfirm.setOnClickListener(v -> {
+                Toast.makeText(requireContext(), "Booking Confirmed!", Toast.LENGTH_SHORT).show();
                 if (getActivity() instanceof MainActivity) {
-                    ((MainActivity) getActivity()).loadFragment(TicketSummaryFragment.newInstance(movieName, selectedSeatIds, selectedSnacks));
+                    ((MainActivity) getActivity()).loadFragment(
+                            TicketSummaryFragment.newInstance(movieName, selectedSeatIds, selectedSnacks));
                 }
             });
 
