@@ -21,15 +21,17 @@ public class TicketSummaryFragment extends Fragment {
 
     private String movieName;
     private ArrayList<Integer> selectedSeats;
+    private ArrayList<Snack> selectedSnacks;
     private final float SEAT_PRICE = 15.0f;
 
     public TicketSummaryFragment() {}
 
-    public static TicketSummaryFragment newInstance(String movieName, ArrayList<Integer> seats) {
+    public static TicketSummaryFragment newInstance(String movieName, ArrayList<Integer> seats, ArrayList<Snack> snacks) {
         TicketSummaryFragment fragment = new TicketSummaryFragment();
         Bundle args = new Bundle();
         args.putString("movieName", movieName);
         args.putIntegerArrayList("seats", seats);
+        args.putParcelableArrayList("snacks", snacks);
         fragment.setArguments(args);
         return fragment;
     }
@@ -40,6 +42,7 @@ public class TicketSummaryFragment extends Fragment {
         if (getArguments() != null) {
             movieName = getArguments().getString("movieName");
             selectedSeats = getArguments().getIntegerArrayList("seats");
+            selectedSnacks = getArguments().getParcelableArrayList("snacks");
         }
     }
 
@@ -55,9 +58,11 @@ public class TicketSummaryFragment extends Fragment {
         Button btnDone = view.findViewById(R.id.btnDoneSummary);
 
         tvMovie.setText(movieName);
-        float total = (selectedSeats != null ? selectedSeats.size() : 0) * SEAT_PRICE;
-        tvPrice.setText(String.format("$%.2f", total));
-
+        
+        float seatTotal = (selectedSeats != null ? selectedSeats.size() : 0) * SEAT_PRICE;
+        float snackTotal = 0;
+        
+        // Display Seats
         if (selectedSeats != null) {
             for (int seat : selectedSeats) {
                 TextView tv = new TextView(getContext());
@@ -68,11 +73,32 @@ public class TicketSummaryFragment extends Fragment {
             }
         }
 
+        // Display Snacks
+        if (selectedSnacks != null) {
+            for (Snack snack : selectedSnacks) {
+                if (snack.getQuantity() > 0) {
+                    float subTotal = (float)(snack.getPrice() * snack.getQuantity());
+                    snackTotal += subTotal;
+                    
+                    TextView tv = new TextView(getContext());
+                    tv.setText(snack.getName() + " x" + snack.getQuantity() + " .................. $" + String.format("%.2f", subTotal));
+                    tv.setTextColor(0xFFAAAAAA);
+                    tv.setPadding(0, 8, 0, 8);
+                    llContainer.addView(tv);
+                }
+            }
+        }
+
+        float total = seatTotal + snackTotal;
+        tvPrice.setText(String.format("$%.2f", total));
+
         btnBack.setOnClickListener(v -> getParentFragmentManager().popBackStack());
         btnDone.setOnClickListener(v -> {
             saveToPreferences(total);
             Toast.makeText(requireContext(), "Booking Saved Locally!", Toast.LENGTH_SHORT).show();
-            ((MainActivity)getActivity()).loadFragment(new HomeFragment());
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).loadFragment(new HomeFragment());
+            }
         });
 
         return view;
@@ -84,6 +110,6 @@ public class TicketSummaryFragment extends Fragment {
         editor.putString("last_movie", movieName);
         editor.putInt("last_seats", selectedSeats != null ? selectedSeats.size() : 0);
         editor.putFloat("last_price", totalPrice);
-        editor.commit();
+        editor.apply();
     }
 }

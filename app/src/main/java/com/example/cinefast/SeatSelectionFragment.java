@@ -33,6 +33,7 @@ public class SeatSelectionFragment extends Fragment {
     private Button btnConfirm, btnBack, btnProceedToSnacks;
     private List<Button> allSeatButtons = new ArrayList<>();
     private ArrayList<Integer> selectedSeatIds = new ArrayList<>();
+    private ArrayList<Snack> selectedSnacks = new ArrayList<>();
 
     private final int MAX_SEATS = 3;
     private final int TICKET_PRICE = 15;
@@ -59,6 +60,15 @@ public class SeatSelectionFragment extends Fragment {
             trailerUrl = getArguments().getString(ARG_TRAILER_URL);
             isComingSoon = getArguments().getBoolean(ARG_IS_COMING_SOON);
         }
+
+        // Listen for snack selection results
+        getParentFragmentManager().setFragmentResultListener("snacks_request", this, (requestKey, bundle) -> {
+            ArrayList<Snack> result = bundle.getParcelableArrayList("selected_snacks");
+            if (result != null) {
+                selectedSnacks = result;
+                Toast.makeText(getContext(), "Snacks added to order!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Nullable
@@ -169,13 +179,13 @@ public class SeatSelectionFragment extends Fragment {
         } else {
             btnConfirm.setOnClickListener(v -> {
                 if (getActivity() instanceof MainActivity) {
-                    ((MainActivity) getActivity()).loadFragment(TicketSummaryFragment.newInstance(movieName, selectedSeatIds));
+                    ((MainActivity) getActivity()).loadFragment(TicketSummaryFragment.newInstance(movieName, selectedSeatIds, selectedSnacks));
                 }
             });
 
             btnProceedToSnacks.setOnClickListener(v -> {
                 if (getActivity() instanceof MainActivity) {
-                    ((MainActivity) getActivity()).loadFragment(SnacksFragment.newInstance(movieName));
+                    ((MainActivity) getActivity()).loadFragment(SnacksFragment.newInstance(movieName, selectedSnacks));
                 }
             });
         }
