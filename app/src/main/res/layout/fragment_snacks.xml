@@ -7,7 +7,6 @@
     android:orientation="vertical"
     android:padding="20dp">
 
-    <!-- Header Logo + Back -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,17 +69,17 @@
         android:textStyle="bold"
         android:layout_marginBottom="16dp" />
 
-    <!-- ListView for Snacks -->
     <ListView
         android:id="@+id/lvSnacks"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:divider="@null"
-        android:dividerHeight="0dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="16dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
         android:scrollbars="none" />
 
-    <!-- Total and Confirm -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
