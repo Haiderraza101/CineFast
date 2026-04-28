@@ -26,7 +26,13 @@ public class SplashActivity extends AppCompatActivity {
     new Handler().postDelayed(new Runnable() {
       @Override
       public void run() {
-        Intent intent = new Intent(SplashActivity.this, OnboardingActivity.class);
+        android.content.SharedPreferences prefs = getSharedPreferences("cinefast_session_pref_v3", MODE_PRIVATE);
+        Intent intent;
+        if (prefs.getBoolean("isLoggedIn", false)) {
+            intent = new Intent(SplashActivity.this, MainActivity.class);
+        } else {
+            intent = new Intent(SplashActivity.this, LoginActivity.class);
+        }
         startActivity(intent);
         finish();
       }
