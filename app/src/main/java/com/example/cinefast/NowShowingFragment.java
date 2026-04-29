@@ -34,10 +34,33 @@ public class NowShowingFragment extends Fragment {
 
     private void loadData() {
         movieData = new ArrayList<>();
-        movieData.add(new Movie("The Night Rider", "Action / 152 min", R.drawable.the_night_rider, "https://www.youtube.com/watch?v=J_1XpB1C-E8", false));
-        movieData.add(new Movie("Inception", "Sci-Fi / 148 min", R.drawable.inception, "https://www.youtube.com/watch?v=YoHD9XEInc0", false));
-        movieData.add(new Movie("Interstellar", "Sci-Fi / 169 min", R.drawable.interstellar, "https://www.youtube.com/watch?v=zSWdZVtXT7E", false));
+        try {
+            java.io.InputStream is = requireContext().getAssets().open("movies.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String json = new String(buffer, "UTF-8");
+            org.json.JSONArray array = new org.json.JSONArray(json);
+            for (int i = 0; i < array.length(); i++) {
+                org.json.JSONObject obj = array.getJSONObject(i);
+                if (!obj.getBoolean("isComingSoon")) {
+                    String imgName = obj.getString("image");
+                    int resId = getResources().getIdentifier(imgName, "drawable", requireContext().getPackageName());
+                    movieData.add(new Movie(
+                        obj.getString("name"),
+                        obj.getString("genre"),
+                        resId,
+                        obj.getString("trailerUrl"),
+                        false
+                    ));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
     private void setupRecyclerView() {
         rvMovies.setLayoutManager(new LinearLayoutManager(requireContext()));

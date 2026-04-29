@@ -1,0 +1,44 @@
+[
+  {
+    "name": "The Night Rider",
+    "genre": "Action / 152 min",
+    "image": "the_night_rider",
+    "trailerUrl": "https://www.youtube.com/watch?v=J_1XpB1C-E8",
+    "isComingSoon": false
+  },
+  {
+    "name": "Inception",
+    "genre": "Sci-Fi / 148 min",
+    "image": "inception",
+    "trailerUrl": "https://www.youtube.com/watch?v=YoHD9XEInc0",
+    "isComingSoon": false
+  },
+  {
+    "name": "Interstellar",
+    "genre": "Sci-Fi / 169 min",
+    "image": "interstellar",
+    "trailerUrl": "https://www.youtube.com/watch?v=zSWdZVtXT7E",
+    "isComingSoon": false
+  },
+  {
+    "name": "Dune: Part Two",
+    "genre": "Sci-Fi / 166 min",
+    "image": "interstellar",
+    "trailerUrl": "https://www.youtube.com/watch?v=Way9Dexny3w",
+    "isComingSoon": true
+  },
+  {
+    "name": "The Batman",
+    "genre": "Action / 176 min",
+    "image": "inception",
+    "trailerUrl": "https://www.youtube.com/watch?v=mqqft22Sk28",
+    "isComingSoon": true
+  },
+  {
+    "name": "Tenet",
+    "genre": "Sci-Fi / 150 min",
+    "image": "inception",
+    "trailerUrl": "https://www.youtube.com/watch?v=LdOM0x0XDwM",
+    "isComingSoon": true
+  }
+]

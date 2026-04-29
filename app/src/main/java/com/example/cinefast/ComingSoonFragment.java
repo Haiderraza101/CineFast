@@ -35,13 +35,33 @@ public class ComingSoonFragment extends Fragment {
 
     private void loadData() {
         movieData = new ArrayList<>();
-        movieData.add(new Movie("Dune: Part Two", "Sci-Fi / 166 min", R.drawable.interstellar,
-                "https://www.youtube.com/watch?v=Way9Dexny3w", true));
-        movieData.add(new Movie("The Batman", "Action / 176 min", R.drawable.inception,
-                "https://www.youtube.com/watch?v=mqqft22Sk28", true));
-        movieData.add(new Movie("Tenet", "Sci-Fi / 150 min", R.drawable.inception,
-                "https://www.youtube.com/watch?v=LdOM0x0XDwM", true));
+        try {
+            java.io.InputStream is = requireContext().getAssets().open("movies.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String json = new String(buffer, "UTF-8");
+            org.json.JSONArray array = new org.json.JSONArray(json);
+            for (int i = 0; i < array.length(); i++) {
+                org.json.JSONObject obj = array.getJSONObject(i);
+                if (obj.getBoolean("isComingSoon")) {
+                    String imgName = obj.getString("image");
+                    int resId = getResources().getIdentifier(imgName, "drawable", requireContext().getPackageName());
+                    movieData.add(new Movie(
+                        obj.getString("name"),
+                        obj.getString("genre"),
+                        resId,
+                        obj.getString("trailerUrl"),
+                        true
+                    ));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
     private void setupRecyclerView() {
         rvMovies.setLayoutManager(new LinearLayoutManager(requireContext()));
