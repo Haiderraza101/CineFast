@@ -135,7 +135,8 @@ public class TicketSummaryFragment extends Fragment {
 
         btnBack.setOnClickListener(v -> getParentFragmentManager().popBackStack());
         btnDone.setOnClickListener(v -> {
-            saveToPreferences(total);
+            saveBookingToFirebase(total, tvDate.getText().toString(), tvTime.getText().toString());
+
 
             StringBuilder shareBody = new StringBuilder();
             shareBody.append("CineFast Ticket Summary\n\n");
@@ -179,12 +180,28 @@ public class TicketSummaryFragment extends Fragment {
         return view;
     }
 
-    private void saveToPreferences(float totalPrice) {
-        SharedPreferences sPref = requireContext().getSharedPreferences("booking_data", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sPref.edit();
-        editor.putString("last_movie", movieName);
-        editor.putInt("last_seats", selectedSeats != null ? selectedSeats.size() : 0);
-        editor.putFloat("last_price", totalPrice);
-        editor.apply();
+    private void saveBookingToFirebase(float totalPrice, String date, String time) {
+        com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return;
+
+        String userId = user.getUid();
+        com.google.firebase.database.DatabaseReference ref = com.google.firebase.database.FirebaseDatabase.getInstance().getReference("bookings").child(userId);
+        String bookingId = ref.push().getKey();
+
+        java.util.HashMap<String, Object> booking = new java.util.HashMap<>();
+        booking.put("bookingId", bookingId);
+        booking.put("movieName", movieName);
+        booking.put("seats", selectedSeats != null ? selectedSeats.size() : 0);
+        booking.put("totalPrice", totalPrice);
+        booking.put("date", date);
+        booking.put("time", time);
+        booking.put("timestamp", System.currentTimeMillis());
+
+        if (bookingId != null) {
+            ref.child(bookingId).setValue(booking)
+                    .addOnSuccessListener(aVoid -> Toast.makeText(requireContext(), "Booking Confirmed!", Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e -> Toast.makeText(requireContext(), "Booking Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+        }
     }
+
 }
