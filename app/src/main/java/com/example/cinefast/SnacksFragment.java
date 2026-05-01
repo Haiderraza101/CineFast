@@ -27,7 +27,6 @@ public class SnacksFragment extends Fragment {
     private String movieName;
 
     public SnacksFragment() {
-        // Required empty public constructor
     }
 
     public static SnacksFragment newInstance(String movieName, ArrayList<Snack> existingSnacks) {
@@ -73,14 +72,9 @@ public class SnacksFragment extends Fragment {
         }
 
         btnConfirm.setOnClickListener(v -> {
-            // Prepare Result
             Bundle result = new Bundle();
             result.putParcelableArrayList("selected_snacks", snackList);
-
-            // Send back to SeatSelectionFragment
             getParentFragmentManager().setFragmentResult("snacks_request", result);
-
-            // Go back
             getParentFragmentManager().popBackStack();
         });
     }
