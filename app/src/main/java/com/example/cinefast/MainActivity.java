@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toast.makeText(this, "CineFAST", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Welcome to CineFAST!", Toast.LENGTH_SHORT).show();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -47,6 +47,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
+
+        android.view.View headerView = navigationView.getHeaderView(0);
+        android.widget.TextView tvEmail = headerView.findViewById(R.id.tvUserEmail);
+        com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance()
+                .getCurrentUser();
+        if (user != null && tvEmail != null) {
+            tvEmail.setText(user.getEmail());
+        }
+
     }
 
     @Override
@@ -79,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void loadFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, fragment)
+                .addToBackStack(null)
                 .commit();
     }
 
@@ -86,8 +96,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SeatSelectionFragment fragment = SeatSelectionFragment.newInstance(
                 movie.getName(),
                 movie.getTrailerUrl(),
-                movie.isComingSoon()
-        );
+                movie.isComingSoon());
         loadFragment(fragment);
     }
 

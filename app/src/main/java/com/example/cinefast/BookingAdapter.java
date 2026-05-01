@@ -33,6 +33,12 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingV
         this.userId = userId;
     }
 
+    public void filterList(ArrayList<Booking> filteredList) {
+        this.bookings = filteredList;
+        notifyDataSetChanged();
+    }
+
+
     @NonNull
     @Override
     public BookingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -48,12 +54,16 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingV
         holder.tvDateTime.setText(booking.getDate() + " | " + booking.getTime());
         holder.tvTickets.setText(booking.getSeats() + " Tickets");
 
-        if (booking.getMovieName().equalsIgnoreCase("Inception"))
-            holder.ivPoster.setImageResource(R.drawable.inception);
-        else if (booking.getMovieName().equalsIgnoreCase("Interstellar"))
-            holder.ivPoster.setImageResource(R.drawable.interstellar);
-        else if (booking.getMovieName().equalsIgnoreCase("The Night Rider"))
-            holder.ivPoster.setImageResource(R.drawable.the_night_rider);
+        if (booking.getMovieName() != null) {
+            String posterName = booking.getMovieName().toLowerCase().replace(" ", "");
+            int resId = context.getResources().getIdentifier(posterName, "drawable", context.getPackageName());
+            if (resId != 0) {
+                holder.ivPoster.setImageResource(resId);
+            } else {
+                holder.ivPoster.setImageResource(R.drawable.inception); // fallback
+            }
+        }
+
 
         holder.btnCancel.setOnClickListener(v -> showCancelDialog(booking, position));
     }
