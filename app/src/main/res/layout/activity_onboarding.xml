@@ -55,14 +55,15 @@
             android:id="@+id/btnGetStarted"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:backgroundTint="@color/brand_red"
+            android:backgroundTint="#FF0000"
             android:text="Get Started"
-            android:textColor="@color/text_white"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textAllCaps="false"
-            android:layout_marginBottom="16dp"
-            app:cornerRadius="12dp" />
+            android:layout_marginBottom="20dp"
+            app:cornerRadius="16dp" />
+
 
     </LinearLayout>
 

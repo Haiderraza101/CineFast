@@ -43,7 +43,14 @@ public class LoginActivity extends AppCompatActivity {
 
         btnLogin.setOnClickListener(v -> loginUser());
         tvRegisterLink.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, SignupActivity.class)));
+        
+        findViewById(R.id.tvForgotPassword).setOnClickListener(v -> 
+            Toast.makeText(LoginActivity.this, "Forgot Password feature coming soon!", Toast.LENGTH_SHORT).show());
+
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
     }
+
 
     private void loginUser() {
         String email = etEmail.getText().toString().trim();

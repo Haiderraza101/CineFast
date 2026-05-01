@@ -77,4 +77,9 @@
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textSize">12sp</item>
     </style>
-</resources>
+
+    <style name="BlackTickCheckBox" parent="">
+        <item name="colorControlActivated">#4CAF50</item>
+        <item name="android:textColorSecondary">#000000</item>
+    </style>
+</resources>

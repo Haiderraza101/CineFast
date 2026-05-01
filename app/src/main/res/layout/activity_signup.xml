@@ -8,10 +8,12 @@
 
     <ImageButton
         android:id="@+id/btnBack"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/circle_bg_dark"
+        android:background="@drawable/circle_bg_figma"
+        android:padding="12dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/ic_back_arrow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,7 +25,7 @@
         android:layout_height="wrap_content"
         android:text="Sign Up"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/btnBack"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,27 +33,56 @@
         app:layout_constraintTop_toTopOf="@id/btnBack" />
 
     <TextView
-        android:id="@+id/lblEmail"
+        android:id="@+id/lblName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="Email"
+        android:layout_marginTop="30dp"
+        android:text="Full Name"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnBack" />
 
     <EditText
+        android:id="@+id/etName"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_bg_figma"
+        android:hint="Text your name"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="#888888"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblName" />
+
+    <TextView
+        android:id="@+id/lblEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Email"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etName" />
+
+
+    <EditText
         android:id="@+id/etEmail"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="54dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/edittext_bg_dark"
+        android:background="@drawable/edittext_bg_figma"
         android:hint="Text your email"
         android:inputType="textEmailAddress"
         android:paddingHorizontal="16dp"
         android:textColor="@color/white"
         android:textColorHint="#888888"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lblEmail" />
@@ -60,7 +91,7 @@
         android:id="@+id/lblPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:text="Password"
         android:textColor="@color/white"
         android:textSize="14sp"
@@ -70,14 +101,15 @@
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="54dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/edittext_bg_dark"
+        android:background="@drawable/edittext_bg_figma"
         android:hint="Text your password"
         android:inputType="textPassword"
         android:paddingHorizontal="16dp"
         android:textColor="@color/white"
         android:textColorHint="#888888"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lblPassword" />
@@ -86,7 +118,7 @@
         android:id="@+id/lblConfirmPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:text="Confirm password"
         android:textColor="@color/white"
         android:textSize="14sp"
@@ -96,14 +128,15 @@
     <EditText
         android:id="@+id/etConfirmPassword"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="54dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/edittext_bg_dark"
+        android:background="@drawable/edittext_bg_figma"
         android:hint="Text your password"
         android:inputType="textPassword"
         android:paddingHorizontal="16dp"
         android:textColor="@color/white"
         android:textColorHint="#888888"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lblConfirmPassword" />
@@ -112,16 +145,17 @@
         android:id="@+id/btnSignup"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="#FF0000"
         android:text="Sign Up"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:cornerRadius="12dp"
+        app:cornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etConfirmPassword" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

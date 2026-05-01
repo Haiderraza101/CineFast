@@ -201,10 +201,10 @@ public class SeatSelectionFragment extends Fragment {
             });
         } else {
             btnConfirm.setOnClickListener(v -> {
-                Toast.makeText(requireContext(), "Booking Confirmed!", Toast.LENGTH_SHORT).show();
+                String bookingId = saveBookingToFirebase();
                 if (getActivity() instanceof MainActivity) {
                     ((MainActivity) getActivity()).loadFragment(
-                            TicketSummaryFragment.newInstance(movieName, selectedSeatIds, selectedSnacks));
+                            TicketSummaryFragment.newInstance(movieName, selectedSeatIds, selectedSnacks, bookingId));
                 }
             });
 
@@ -215,4 +215,36 @@ public class SeatSelectionFragment extends Fragment {
             });
         }
     }
+
+    private String saveBookingToFirebase() {
+        com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) return null;
+
+        String userId = user.getUid();
+        com.google.firebase.database.DatabaseReference ref = com.google.firebase.database.FirebaseDatabase.getInstance().getReference("bookings").child(userId);
+        String bookingId = ref.push().getKey();
+
+        float totalPrice = selectedSeatIds.size() * TICKET_PRICE;
+        
+        android.content.SharedPreferences sPref = requireContext().getSharedPreferences("booking_data", android.content.Context.MODE_PRIVATE);
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd.MM.yyyy", java.util.Locale.getDefault());
+        String date = sPref.getString("selected_date", sdf.format(new java.util.Date()));
+        String time = "10:00 AM"; // Default time if not selected
+
+        java.util.HashMap<String, Object> booking = new java.util.HashMap<>();
+        booking.put("bookingId", bookingId);
+        booking.put("movieName", movieName);
+        booking.put("seats", selectedSeatIds.size());
+        booking.put("totalPrice", totalPrice);
+        booking.put("date", date);
+        booking.put("time", time);
+        booking.put("timestamp", System.currentTimeMillis());
+
+        if (bookingId != null) {
+            ref.child(bookingId).setValue(booking)
+                    .addOnSuccessListener(aVoid -> Toast.makeText(requireContext(), "Seat Booked!", Toast.LENGTH_SHORT).show());
+        }
+        return bookingId;
+    }
+
 }
