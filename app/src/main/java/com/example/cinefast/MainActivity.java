@@ -56,9 +56,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_home) {
             loadFragment(new HomeFragment());
         } else if (id == R.id.nav_bookings) {
-            // MyBookingsFragment will be created later
-            // loadFragment(new MyBookingsFragment());
+            loadFragment(new MyBookingsFragment());
         } else if (id == R.id.nav_logout) {
+
             logoutUser();
         }
 
