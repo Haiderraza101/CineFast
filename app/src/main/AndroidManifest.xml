@@ -56,5 +56,4 @@
             android:exported="false"
             android:theme="@style/Theme.CineFAST" />
     </application>
-
 </manifest>

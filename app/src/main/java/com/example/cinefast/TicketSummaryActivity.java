@@ -131,11 +131,9 @@ public class TicketSummaryActivity extends AppCompatActivity {
       addTextRow(llSnacksContainer, "No snacks selected");
     }
 
-    // --- 3. FINAL TOTAL ---
     tvFinalTotalPrice.setText(String.format(Locale.US, "$%.2f", totalAmount));
   }
 
-  // Helper to create the "Item ....... $Price" row dynamically
   private void addSummaryRow(LinearLayout container, String label, double price) {
     LinearLayout row = new LinearLayout(this);
     row.setOrientation(LinearLayout.HORIZONTAL);
