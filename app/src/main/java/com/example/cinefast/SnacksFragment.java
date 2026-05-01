@@ -80,16 +80,10 @@ public class SnacksFragment extends Fragment {
     }
 
     private void loadData() {
-        snackList = new ArrayList<>();
-        snackList.add(new Snack("Popcorn", "Large / Buttered", 8.99, R.drawable.popcorn,
-                ContextCompat.getColor(requireContext(), R.color.snack_popcorn)));
-        snackList.add(new Snack("Nachos", "With Cheese Dip", 7.99, R.drawable.nacho,
-                ContextCompat.getColor(requireContext(), R.color.snack_nachos)));
-        snackList.add(new Snack("Soft Drink", "Large / Any Flavor", 5.99, R.drawable.softdrink,
-                ContextCompat.getColor(requireContext(), R.color.snack_soda)));
-        snackList.add(new Snack("Hot Dog", "Spicy / Mustard", 6.99, R.drawable.nacho,
-                ContextCompat.getColor(requireContext(), R.color.snack_hotdog)));
+        DatabaseHelper dbHelper = new DatabaseHelper(requireContext());
+        snackList = dbHelper.getAllSnacks(requireContext());
     }
+
 
     private void setupListView() {
         adapter = new SnackAdapter(requireContext(), snackList, this::updateTotal);

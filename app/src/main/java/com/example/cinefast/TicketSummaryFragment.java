@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class TicketSummaryFragment extends Fragment {
 
-    private String movieName;
+    private String movieName, bookingId;
     private ArrayList<Integer> selectedSeats;
     private ArrayList<Snack> selectedSnacks;
     private final float SEAT_PRICE = 15.0f;
@@ -29,12 +29,13 @@ public class TicketSummaryFragment extends Fragment {
     }
 
     public static TicketSummaryFragment newInstance(String movieName, ArrayList<Integer> seats,
-            ArrayList<Snack> snacks) {
+            ArrayList<Snack> snacks, String bookingId) {
         TicketSummaryFragment fragment = new TicketSummaryFragment();
         Bundle args = new Bundle();
         args.putString("movieName", movieName);
         args.putIntegerArrayList("seats", seats);
         args.putParcelableArrayList("snacks", snacks);
+        args.putString("booking_id", bookingId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -46,8 +47,10 @@ public class TicketSummaryFragment extends Fragment {
             movieName = getArguments().getString("movieName");
             selectedSeats = getArguments().getIntegerArrayList("seats");
             selectedSnacks = getArguments().getParcelableArrayList("snacks");
+            bookingId = getArguments().getString("booking_id");
         }
     }
+
 
     @Nullable
     @Override
@@ -135,7 +138,8 @@ public class TicketSummaryFragment extends Fragment {
 
         btnBack.setOnClickListener(v -> getParentFragmentManager().popBackStack());
         btnDone.setOnClickListener(v -> {
-            saveToPreferences(total);
+            saveBookingToFirebase(total, tvDate.getText().toString(), tvTime.getText().toString());
+
 
             StringBuilder shareBody = new StringBuilder();
             shareBody.append("CineFast Ticket Summary\n\n");
@@ -179,12 +183,22 @@ public class TicketSummaryFragment extends Fragment {
         return view;
     }
 
-    private void saveToPreferences(float totalPrice) {
-        SharedPreferences sPref = requireContext().getSharedPreferences("booking_data", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sPref.edit();
-        editor.putString("last_movie", movieName);
-        editor.putInt("last_seats", selectedSeats != null ? selectedSeats.size() : 0);
-        editor.putFloat("last_price", totalPrice);
-        editor.apply();
+    private void saveBookingToFirebase(float totalPrice, String date, String time) {
+        com.google.firebase.auth.FirebaseUser user = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null || bookingId == null) return;
+
+        String userId = user.getUid();
+        com.google.firebase.database.DatabaseReference ref = com.google.firebase.database.FirebaseDatabase.getInstance().getReference("bookings").child(userId).child(bookingId);
+
+        java.util.HashMap<String, Object> updates = new java.util.HashMap<>();
+        updates.put("totalPrice", totalPrice);
+        updates.put("date", date);
+        updates.put("time", time);
+
+        ref.updateChildren(updates)
+                .addOnSuccessListener(aVoid -> Toast.makeText(requireContext(), "Booking Confirmed!", Toast.LENGTH_SHORT).show());
     }
+
+
+
 }
